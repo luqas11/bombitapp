@@ -8,7 +8,7 @@ There are many ways to solve this, but an interesting option that allows me to p
 
 The pump setup details are the following:
 
-#### Pump setup
+##### Pump setup
 - 2 220VAC 1/2 HP pumps, connected to a 5m long pipe which ends at an natural undergroud water reservoir.
 - 2 rooftop water tanks.
 - 2 water level sensors, placed inside the tanks and made by an on/off switch that turns on when the tank gets emptied and turns off when the filling process is complete. That switch operates directly at 220VAC and it's signal is plugged in to the pumps.
