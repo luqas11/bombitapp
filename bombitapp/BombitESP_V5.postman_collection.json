@@ -1,0 +1,971 @@
+{
+	"info": {
+		"_postman_id": "e188952e-f375-4375-8a95-f35e136c43ed",
+		"name": "BombitESP_V5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25131802"
+	},
+	"item": [
+		{
+			"name": "Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/status",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"status"
+					]
+				},
+				"description": "Retorna toda la información relativa al estado del dispositivo en el momento."
+			},
+			"response": [
+				{
+					"name": "Output running",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/status",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Encoding"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "604"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"25c-E2/umyp2LQrvXsxl2vl0yJX6fz0\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 May 2023 05:15:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"time_limit\": 3600,\n    \"outputs\": [\n        {\n            \"status\": 2,\n            \"current_time\": 53,\n            \"mean_time\": 61,\n            \"run_count\": 1,\n            \"sensor_status\": true,\n            \"history\": [\n                61,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        },\n        {\n            \"status\": 0,\n            \"current_time\": 150,\n            \"mean_time\": 554,\n            \"run_count\": 10,\n            \"sensor_status\": false,\n            \"history\": [\n                549,\n                516,\n                543,\n                509,\n                544,\n                534,\n                610,\n                677,\n                539,\n                539\n            ]\n        }\n    ]\n}"
+				},
+				{
+					"name": "Output stopped",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/status",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Encoding"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "604"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"25c-E2/umyp2LQrvXsxl2vl0yJX6fz0\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 May 2023 05:15:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"time_limit\": 3600,\n    \"outputs\": [\n        {\n            \"status\": 0,\n            \"current_time\": 0,\n            \"mean_time\": 61,\n            \"run_count\": 1,\n            \"sensor_status\": false,\n            \"history\": [\n                61,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        },\n        {\n            \"status\": 0,\n            \"current_time\": 150,\n            \"mean_time\": 554,\n            \"run_count\": 10,\n            \"sensor_status\": false,\n            \"history\": [\n                549,\n                516,\n                543,\n                509,\n                544,\n                534,\n                610,\n                677,\n                539,\n                539\n            ]\n        }\n    ]\n}"
+				},
+				{
+					"name": "Output stopped for time limit exceeded (with sensor off)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/status",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Encoding"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "604"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"25c-E2/umyp2LQrvXsxl2vl0yJX6fz0\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 May 2023 05:15:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"time_limit\": 3600,\n    \"outputs\": [\n        {\n            \"status\": 3,\n            \"current_time\": 0,\n            \"mean_time\": 61,\n            \"run_count\": 1,\n            \"sensor_status\": false,\n            \"history\": [\n                61,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        },\n        {\n            \"status\": 0,\n            \"current_time\": 150,\n            \"mean_time\": 554,\n            \"run_count\": 10,\n            \"sensor_status\": false,\n            \"history\": [\n                549,\n                516,\n                543,\n                509,\n                544,\n                534,\n                610,\n                677,\n                539,\n                539\n            ]\n        }\n    ]\n}"
+				},
+				{
+					"name": "Output stopped for time limit exceeded (with sensor on)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/status",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Encoding"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "604"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"25c-E2/umyp2LQrvXsxl2vl0yJX6fz0\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 May 2023 05:15:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"time_limit\": 3600,\n    \"outputs\": [\n        {\n            \"status\": 3,\n            \"current_time\": 0,\n            \"mean_time\": 61,\n            \"run_count\": 1,\n            \"sensor_status\": true,\n            \"history\": [\n                61,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        },\n        {\n            \"status\": 0,\n            \"current_time\": 150,\n            \"mean_time\": 554,\n            \"run_count\": 10,\n            \"sensor_status\": false,\n            \"history\": [\n                549,\n                516,\n                543,\n                509,\n                544,\n                534,\n                610,\n                677,\n                539,\n                539\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Clear history",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/clear-history?input=0",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"clear-history"
+					],
+					"query": [
+						{
+							"key": "input",
+							"value": "0"
+						}
+					]
+				},
+				"description": "Borra los registros de una entrada en particular."
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/clear-history?input=0",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"clear-history"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Encoding"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 May 2023 05:18:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{}"
+				},
+				{
+					"name": "Invalid input number",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/clear-history?input=10",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"clear-history"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Encoding"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "71"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"47-/FEll3U6cMKIGKY3yNNN4FNr9jk\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 May 2023 05:19:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_code\": \"ERR_02\",\n    \"error_message\": \"Invalid input number\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Change time limit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/change-time-limit?time_limit=3600",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"change-time-limit"
+					],
+					"query": [
+						{
+							"key": "time_limit",
+							"value": "3600"
+						}
+					]
+				},
+				"description": "Cambia el tiempo límite de funcionamiento de una salida antes de activar el corte automático."
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/change-time-limit?time_limit=3600",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"change-time-limit"
+							],
+							"query": [
+								{
+									"key": "time_limit",
+									"value": "3600"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Encoding"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 May 2023 05:19:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{}"
+				},
+				{
+					"name": "Invalid time value",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/change-time-limit?time_limit=-10",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"change-time-limit"
+							],
+							"query": [
+								{
+									"key": "time_limit",
+									"value": "-10"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Encoding"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"45-aqPZxp5UVGHGQkfueLQRyU67C08\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 May 2023 05:19:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_code\": \"ERR_01\",\n    \"error_message\": \"Invalid time value\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Resume output",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/resume-output?output=0",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"resume-output"
+					],
+					"query": [
+						{
+							"key": "output",
+							"value": "0"
+						}
+					]
+				},
+				"description": "Reanuda el funcionamiento de una salida que se detuvo por un corte automático."
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/resume-output?output=0",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"resume-output"
+							],
+							"query": [
+								{
+									"key": "output",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Encoding"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 May 2023 05:20:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{}"
+				},
+				{
+					"name": "Invalid output number",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/resume-output?output=10",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"resume-output"
+							],
+							"query": [
+								{
+									"key": "output",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Encoding"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"48-Izfoux3p+564FaMIAaVrIiqMvok\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 May 2023 05:21:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_code\": \"ERR_04\",\n    \"error_message\": \"Invalid output number\"\n}"
+				},
+				{
+					"name": "Invalid output number Copy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/resume-output?output=0",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"resume-output"
+							],
+							"query": [
+								{
+									"key": "output",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin, Accept-Encoding"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"48-Izfoux3p+564FaMIAaVrIiqMvok\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 14 May 2023 05:21:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_code\": \"ERR_03\",\n    \"error_message\": \"The selected output is not in forced stop state\"\n}"
+				}
+			]
+		}
+	]
+}
