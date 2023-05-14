@@ -1,0 +1,584 @@
+{
+	"info": {
+		"_postman_id": "4e62bb29-b0e1-48e8-9769-7ffe4b3260eb",
+		"name": "BombitESP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Estado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/estado",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"estado"
+					]
+				},
+				"description": "Retorna toda la información relativa al estado del dispositivo en el momento."
+			},
+			"response": [
+				{
+					"name": "Entrada encendida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/estado",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"estado"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "259"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"limite\": 3600,\n    \"entradas\": [\n        {\n            \"estado\": 0,\n            \"tiempo\": 0,\n            \"promedio\": 61,\n            \"cantidad\": 1,\n            \"automatico\": false,\n            \"historial\": [\n                61,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        },\n        {\n            \"estado\": 0,\n            \"tiempo\": 0,\n            \"promedio\": 554,\n            \"cantidad\": 10,\n            \"automatico\": false,\n            \"historial\": [\n                549,\n                516,\n                543,\n                509,\n                544,\n                534,\n                610,\n                677,\n                539,\n                539\n            ]\n        }\n    ]\n}"
+				},
+				{
+					"name": "Entradas apagadas",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/estado",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"estado"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "259"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"limite\": 3600,\n    \"entradas\": [\n        {\n            \"estado\": 0,\n            \"tiempo\": 0,\n            \"promedio\": 61,\n            \"cantidad\": 1,\n            \"automatico\": false,\n            \"historial\": [\n                61,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        },\n        {\n            \"estado\": 0,\n            \"tiempo\": 0,\n            \"promedio\": 554,\n            \"cantidad\": 10,\n            \"automatico\": false,\n            \"historial\": [\n                549,\n                516,\n                543,\n                509,\n                544,\n                534,\n                610,\n                677,\n                539,\n                539\n            ]\n        }\n    ]\n}"
+				},
+				{
+					"name": "Salida apagada por corte automático (con entrada encendida)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/estado",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"estado"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "256"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"limite\": 60,\n    \"entradas\": [\n        {\n            \"estado\": 3,\n            \"tiempo\": 0,\n            \"promedio\": 61,\n            \"cantidad\": 1,\n            \"automatico\": true,\n            \"historial\": [\n                61,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        },\n        {\n            \"estado\": 0,\n            \"tiempo\": 0,\n            \"promedio\": 554,\n            \"cantidad\": 10,\n            \"automatico\": false,\n            \"historial\": [\n                549,\n                516,\n                543,\n                509,\n                544,\n                534,\n                610,\n                677,\n                539,\n                539\n            ]\n        }\n    ]\n}"
+				},
+				{
+					"name": "Salida apagada por corte automático (con entrada apagada)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/estado",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"estado"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "257"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"limite\": 60,\n    \"entradas\": [\n        {\n            \"estado\": 3,\n            \"tiempo\": 0,\n            \"promedio\": 61,\n            \"cantidad\": 1,\n            \"automatico\": false,\n            \"historial\": [\n                61,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        },\n        {\n            \"estado\": 0,\n            \"tiempo\": 0,\n            \"promedio\": 554,\n            \"cantidad\": 10,\n            \"automatico\": false,\n            \"historial\": [\n                549,\n                516,\n                543,\n                509,\n                544,\n                534,\n                610,\n                677,\n                539,\n                539\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar historial",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/borrar-historial?value=0",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"borrar-historial"
+					],
+					"query": [
+						{
+							"key": "value",
+							"value": "0",
+							"description": "Número de entrada a la que se le deben borrar los registros."
+						}
+					]
+				},
+				"description": "Borra los registros de una entrada en particular."
+			},
+			"response": [
+				{
+					"name": "Cambios aplicados",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/borrar-historial?value=0",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"borrar-historial"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "0",
+									"description": "Número de entrada a la que se le deben borrar los registros."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Entrada inválida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/borrar-historial?value=8",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"borrar-historial"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "8",
+									"description": "Número de entrada a la que se le deben borrar los registros."
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"codigo\": \"ERR_02\",\n    \"mensaje\": \"Entrada inválida\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Cambiar tiempo límite",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/cambiar-tiempo-limite?value=3600",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"cambiar-tiempo-limite"
+					],
+					"query": [
+						{
+							"key": "value",
+							"value": "3600",
+							"description": "Valor de tiempo límite a configurar (en segundos)."
+						}
+					]
+				},
+				"description": "Cambia el tiempo límite de funcionamiento de una salida antes de activar el corte automático."
+			},
+			"response": [
+				{
+					"name": "Valor inválido",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/cambiar-tiempo-limite?value=0",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"cambiar-tiempo-limite"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "0",
+									"description": "Valor de tiempo límite a configurar (en segundos)."
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"codigo\": \"ERR_01\",\n    \"mensaje\": \"Valor de tiempo inválido\"\n}"
+				},
+				{
+					"name": "Cambios aplicados",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/cambiar-tiempo-limite?value=3600",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"cambiar-tiempo-limite"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "3600",
+									"description": "Valor de tiempo límite a configurar (en segundos)."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Reanudar salida",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/reanudar-salida?value=0",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"reanudar-salida"
+					],
+					"query": [
+						{
+							"key": "value",
+							"value": "0",
+							"description": "Número de salida que se debe reanudar."
+						}
+					]
+				},
+				"description": "Reanuda el funcionamiento de una salida que se detuvo por un corte automático."
+			},
+			"response": [
+				{
+					"name": "Salida no detenida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/reanudar-salida?value=0",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"reanudar-salida"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "0",
+									"description": "Número de salida que se debe reanudar."
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "80"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"codigo\": \"ERR_03\",\n    \"mensaje\": \"La entrada no está en modo de corte automático\"\n}"
+				},
+				{
+					"name": "Entrada inválida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/reanudar-salida?value=56",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"reanudar-salida"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "56",
+									"description": "Número de salida que se debe reanudar."
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"codigo\": \"ERR_02\",\n    \"mensaje\": \"Entrada inválida\"\n}"
+				},
+				{
+					"name": "Salida reanudada",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/reanudar-salida?value=0",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"reanudar-salida"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "0",
+									"description": "Número de salida que se debe reanudar."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
