@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "mock": "json-server --watch db.json --port 3004 --middlewares ./mock-error-middleware.js"
+    "mock": "json-server --watch db.json --port 3004 --middlewares ./mock-error-middleware.js",
+    "assemble": "cd android && gradlew assembleRelease"
   },
   "dependencies": {
     "react": "18.2.0",
