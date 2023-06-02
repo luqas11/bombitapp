@@ -3,7 +3,6 @@ const Colors = Object.freeze({
   secondaryBackground: '#1D1D40',
   button: '#252570',
   text: '#E6E6E6',
-  headerBackground: '#1D1D40',
   tabBarActive: '#1b1a63',
   tabBarInactive: '#1D1D40',
 });

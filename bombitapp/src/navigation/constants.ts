@@ -1,0 +1,3 @@
+export const DASHBOARD_SCREENNAME = 'DASHBOARD';
+export const SETTINGS_SCREENNAME = 'SETTINGS';
+export const ABOUT_SCREENNAME = 'ABOUT';

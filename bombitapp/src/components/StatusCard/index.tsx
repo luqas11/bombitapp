@@ -14,6 +14,18 @@ type StatusCardProps = {
   historyOnPress: () => void;
 };
 
+/**
+ * Device status card, that displays the main device information and the timers.
+ * @param props
+ *   @param props.name device name
+ *   @param props.currentTime curent time value
+ *   @param props.meanTime mean time value
+ *   @param props.runs total run count
+ *   @param props.status current device status
+ *   @param props.historyOnPress funcion to be called when the history button is pressed
+ * @returns a card component
+ */
+
 const StatusCard = ({
   name,
   currentTime,

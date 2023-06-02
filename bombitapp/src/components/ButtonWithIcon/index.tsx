@@ -17,6 +17,20 @@ type ButtonWithIconProps = {
   disabled?: boolean;
 };
 
+/**
+ * Button with an icon and a label.
+ * @param props
+ *   @param props.text label text. If undefined, Text component won't be rendered
+ *   @param props.customStyles button container custom styles
+ *   @param props.iconConfig icon configuration
+ *     @param props.iconConfig.name icon name
+ *     @param props.iconConfig.color icon color
+ *     @param props.iconConfig.size icon size
+ *   @param props.onPress function to be called when the button in pressed
+ *   @param props.disabled if true, the button is not pressable
+ * @returns a button component
+ */
+
 const ButtonWithIcon = ({
   text,
   iconConfig,
