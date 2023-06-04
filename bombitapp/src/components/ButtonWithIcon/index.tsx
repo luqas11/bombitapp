@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/check-param-names */
 import React from 'react';
 import {Text, TouchableOpacity, ViewStyle} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -19,7 +20,7 @@ type ButtonWithIconProps = {
 
 /**
  * Button with an icon and a label.
- * @param props
+ * @param props component props
  *   @param props.text label text. If undefined, Text component won't be rendered
  *   @param props.customStyles button container custom styles
  *   @param props.iconConfig icon configuration
@@ -30,7 +31,6 @@ type ButtonWithIconProps = {
  *   @param props.disabled if true, the button is not pressable
  * @returns a button component
  */
-
 const ButtonWithIcon = ({
   text,
   iconConfig,
@@ -51,7 +51,7 @@ const ButtonWithIcon = ({
         <MaterialCommunityIcons
           name={iconConfig.name}
           size={iconConfig.size ?? 56}
-          color={iconConfig.size ?? Colors.text}
+          color={iconConfig.color ?? Colors.text}
         />
       )}
       {text && <Text style={styles.text}>{text}</Text>}

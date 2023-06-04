@@ -1,6 +1,7 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 
+import {RequestStatusIndicator, StatusCard} from '../../components';
 import {styles} from './styles';
 
 /**
@@ -9,8 +10,26 @@ import {styles} from './styles';
  */
 const DashboardScreen = () => {
   return (
-    <View>
-      <Text style={styles.text}>DashboardScreen</Text>
+    <View style={styles.container}>
+      <StatusCard
+        name={'Entrada 1'}
+        currentTime={0}
+        meanTime={0}
+        runs={0}
+        status={'OFF'}
+        historyOnPress={() => {}}
+      />
+      <StatusCard
+        name={'Entrada 2'}
+        currentTime={0}
+        meanTime={0}
+        runs={0}
+        status={'OFF'}
+        historyOnPress={() => {}}
+      />
+      <View style={styles.indicatorContainer}>
+        <RequestStatusIndicator requestState="IN_PROGRESS" />
+      </View>
     </View>
   );
 };

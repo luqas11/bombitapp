@@ -4,12 +4,12 @@ import Colors from '../../constants/colors';
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.button,
-    borderRadius: 16,
-    alignItems: 'center',
     justifyContent: 'center',
-    padding: 10,
-    gap: 6,
+    alignItems: 'center',
+    borderRadius: 26,
+    height: 100,
+    width: 100,
   },
-  disabledContainer: {opacity: 0.3},
-  text: {color: Colors.text, fontSize: 14},
+  responseOk: {backgroundColor: '#009900'},
+  responseError: {backgroundColor: '#990000'},
 });

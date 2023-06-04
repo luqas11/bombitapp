@@ -4,14 +4,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {AboutScreen, DashboardScreen, SettingsScreen} from '../screens';
-import {styles} from './styles';
 import {
   ABOUT_SCREENNAME,
   DASHBOARD_SCREENNAME,
   SETTINGS_SCREENNAME,
 } from './constants';
-
-type TabBarIconProps = {color: string; size: number};
+import {styles} from './styles';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,7 +33,7 @@ const CustomNavigator = (): JSX.Element => {
         options={{
           title: 'Estado del sistema',
           tabBarLabel: 'Estado',
-          tabBarIcon: ({color}: TabBarIconProps) => (
+          tabBarIcon: ({color}: {color: string}) => (
             <MaterialCommunityIcons name="monitor" color={color} size={28} />
           ),
         }}
@@ -46,7 +44,7 @@ const CustomNavigator = (): JSX.Element => {
         options={{
           title: 'Ajustes',
           tabBarLabel: 'Ajustes',
-          tabBarIcon: ({color}: TabBarIconProps) => (
+          tabBarIcon: ({color}: {color: string}) => (
             <MaterialCommunityIcons name="tools" color={color} size={28} />
           ),
         }}
@@ -57,7 +55,7 @@ const CustomNavigator = (): JSX.Element => {
         options={{
           title: 'Información de la app',
           tabBarLabel: 'Info',
-          tabBarIcon: ({color}: TabBarIconProps) => (
+          tabBarIcon: ({color}: {color: string}) => (
             <MaterialCommunityIcons
               name="information"
               color={color}

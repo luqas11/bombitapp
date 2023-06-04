@@ -5,13 +5,13 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.secondaryBackground,
     borderRadius: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
     borderLeftWidth: 16,
     paddingVertical: 8,
     paddingHorizontal: 16,
   },
+  title: {color: Colors.text, fontSize: 20, marginBottom: 20},
+  button: {height: 100, aspectRatio: 1},
+  buttonsContainer: {flexDirection: 'row', justifyContent: 'space-between'},
   statusOff: {
     borderColor: 'gray',
   },
@@ -21,10 +21,4 @@ export const styles = StyleSheet.create({
   statusStop: {
     borderColor: 'red',
   },
-  name: {color: Colors.text, fontSize: 20, marginBottom: 4},
-  time: {color: Colors.text, fontSize: 42},
-  recordsContainer: {display: 'flex', flexDirection: 'row', gap: 12},
-  recordTitle: {color: Colors.text, fontSize: 14},
-  recordValue: {color: Colors.text, fontSize: 18},
-  button: {height: 100, aspectRatio: 1},
 });

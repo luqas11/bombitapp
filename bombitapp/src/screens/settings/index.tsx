@@ -1,6 +1,11 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 
+import {
+  ConfigCard,
+  RequestStatusIndicator,
+  TimeLimitCard,
+} from '../../components';
 import {styles} from './styles';
 
 /**
@@ -9,8 +14,27 @@ import {styles} from './styles';
  */
 const SettingsScreen = () => {
   return (
-    <View>
-      <Text style={styles.text}>SettingsScreen</Text>
+    <View style={styles.container}>
+      <ConfigCard
+        title="Entrada 1"
+        deviceId={0}
+        renameDevice={() => {}}
+        resumeDevice={() => {}}
+        deleteDeviceData={() => {}}
+        status="OFF"
+      />
+      <ConfigCard
+        title="Entrada 2"
+        deviceId={1}
+        renameDevice={() => {}}
+        resumeDevice={() => {}}
+        deleteDeviceData={() => {}}
+        status="OFF"
+      />
+      <TimeLimitCard setDeviceTimeLimit={() => {}} timeLimit={3600} />
+      <View style={styles.indicatorContainer}>
+        <RequestStatusIndicator requestState="IN_PROGRESS" />
+      </View>
     </View>
   );
 };
