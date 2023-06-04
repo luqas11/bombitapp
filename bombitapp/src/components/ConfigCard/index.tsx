@@ -46,20 +46,20 @@ const ConfigCard = ({
       <View style={styles.buttonsContainer}>
         <ButtonWithIcon
           customStyles={styles.button}
-          iconConfig={{name: 'pen'}}
+          iconConfig={{name: 'pen', size: 40}}
           text="Renombrar"
           onPress={() => {}}
         />
         <ButtonWithIcon
           customStyles={styles.button}
-          iconConfig={{name: 'arrow-up-circle'}}
+          iconConfig={{name: 'arrow-up-circle', size: 40}}
           text="Reanudar"
           onPress={() => {}}
           disabled={status !== 'STOPPED'}
         />
         <ButtonWithIcon
           customStyles={styles.button}
-          iconConfig={{name: 'trash-can'}}
+          iconConfig={{name: 'trash-can', size: 40}}
           text="Borrar"
           onPress={() => {}}
         />

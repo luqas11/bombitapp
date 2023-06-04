@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, ScrollView} from 'react-native';
 
 import {
   ConfigCard,
@@ -14,7 +14,7 @@ import {styles} from './styles';
  */
 const SettingsScreen = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <ConfigCard
         title="Entrada 1"
         deviceId={0}
@@ -35,7 +35,7 @@ const SettingsScreen = () => {
       <View style={styles.indicatorContainer}>
         <RequestStatusIndicator requestState="IN_PROGRESS" />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

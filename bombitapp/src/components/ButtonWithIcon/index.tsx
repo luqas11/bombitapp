@@ -54,7 +54,11 @@ const ButtonWithIcon = ({
           color={iconConfig.color ?? Colors.text}
         />
       )}
-      {text && <Text style={styles.text}>{text}</Text>}
+      {text && (
+        <Text style={styles.text} numberOfLines={1} ellipsizeMode="tail">
+          {text}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 };

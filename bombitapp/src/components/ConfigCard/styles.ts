@@ -10,8 +10,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   title: {color: Colors.text, fontSize: 20, marginBottom: 20},
-  button: {height: 100, aspectRatio: 1},
-  buttonsContainer: {flexDirection: 'row', justifyContent: 'space-between'},
+  button: {flex: 1, aspectRatio: 1},
+  buttonsContainer: {flexDirection: 'row', gap: 12},
   statusOff: {
     borderColor: 'gray',
   },

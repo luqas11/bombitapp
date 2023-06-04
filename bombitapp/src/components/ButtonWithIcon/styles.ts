@@ -11,5 +11,5 @@ export const styles = StyleSheet.create({
     gap: 6,
   },
   disabledContainer: {opacity: 0.3},
-  text: {color: Colors.text, fontSize: 14},
+  text: {color: Colors.text, fontSize: 12},
 });
