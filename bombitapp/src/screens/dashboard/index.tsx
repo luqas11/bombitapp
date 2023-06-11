@@ -2,6 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 
 import {RequestStatusIndicator, StatusCard} from '../../components';
+import {useModalContext} from '../../context';
 import {styles} from './styles';
 
 /**
@@ -9,6 +10,11 @@ import {styles} from './styles';
  * @returns a screen component
  */
 const DashboardScreen = () => {
+  const modal = useModalContext();
+
+  const historyDummyData1 = [] as number[];
+  const historyDummyData2 = [23, 0, 5, 213, 0, 2435, 23, 123];
+
   return (
     <View style={styles.container}>
       <StatusCard
@@ -17,7 +23,7 @@ const DashboardScreen = () => {
         meanTime={0}
         runs={0}
         status={'OFF'}
-        historyOnPress={() => {}}
+        historyOnPress={() => modal.showHistoryModal(historyDummyData1)}
       />
       <StatusCard
         name={'Entrada 2'}
@@ -25,7 +31,7 @@ const DashboardScreen = () => {
         meanTime={0}
         runs={0}
         status={'OFF'}
-        historyOnPress={() => {}}
+        historyOnPress={() => modal.showHistoryModal(historyDummyData2)}
       />
       <View style={styles.indicatorContainer}>
         <RequestStatusIndicator requestState="IN_PROGRESS" />
