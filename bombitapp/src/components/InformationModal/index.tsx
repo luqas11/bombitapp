@@ -6,7 +6,6 @@ import {styles} from './styles';
 
 type InformationModalProps = {
   text: string;
-  visible: boolean;
   hideModal: () => void;
   type: 'ERROR' | 'SUCCESS' | undefined;
 };
@@ -15,17 +14,11 @@ type InformationModalProps = {
  * Information modal component, with a title, a text, and an accept button.
  * @param props component props
  *   @param props.text modal body text
- *   @param props.visible boolean indicating whether the modal is visible or hidden
  *   @param props.hideModal funcion to hide the modal
  *   @param props.type defines the type of message displayed in the modal (error or success)
  * @returns a modal component
  */
-const InformationModal = ({
-  text,
-  visible,
-  hideModal,
-  type,
-}: InformationModalProps) => {
+const InformationModal = ({text, hideModal, type}: InformationModalProps) => {
   const messageTypeStyles = {
     ERROR: styles.messageError,
     SUCCESS: styles.messageSuccess,
@@ -34,7 +27,6 @@ const InformationModal = ({
   return (
     <Modal
       animationType={'slide'}
-      visible={visible}
       transparent={true}
       onRequestClose={hideModal}>
       <View style={styles.container}>

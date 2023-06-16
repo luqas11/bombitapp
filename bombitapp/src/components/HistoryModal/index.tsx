@@ -7,7 +7,6 @@ import {styles} from './styles';
 
 type HistoryModalProps = {
   historyEntries: number[];
-  visible: boolean;
   hideModal: () => void;
 };
 
@@ -15,15 +14,10 @@ type HistoryModalProps = {
  * History modal component, with a title and a time entry list. If the given entries are less than 10, the list will be filled with placeholders.
  * @param props component props
  *   @param props.historyEntries array with time entries to be shown in the list
- *   @param props.visible boolean indicating whether the modal is visible or hidden
  *   @param props.hideModal function to hide the modal
  * @returns a modal component
  */
-const HistoryModal = ({
-  historyEntries,
-  visible,
-  hideModal,
-}: HistoryModalProps) => {
+const HistoryModal = ({historyEntries, hideModal}: HistoryModalProps) => {
   const LIST_MIN_LENGTH = 10;
   /**
    * Renders a history entry with top and bottom dividers
@@ -41,7 +35,6 @@ const HistoryModal = ({
   return (
     <Modal
       animationType={'slide'}
-      visible={visible}
       transparent={true}
       onRequestClose={hideModal}>
       <View style={styles.container}>

@@ -9,7 +9,6 @@ import {styles} from './styles';
 type ConfirmationModalProps = {
   title: string;
   text: string;
-  visible: boolean;
   hideModal: () => void;
   acceptCallback: (value?: string) => void;
   textInputConfig?: {
@@ -24,7 +23,6 @@ type ConfirmationModalProps = {
  * @param props component props
  *   @param props.title modal title text
  *   @param props.text modal body text
- *   @param props.visible whether the modal is visible or not
  *   @param props.hideModal funcion to hide the modal
  *   @param props.acceptCallback funcion to be called when the accept button is pressed
  *   @param props.textInputConfig text input parameters
@@ -36,7 +34,6 @@ type ConfirmationModalProps = {
 const ConfirmationModal = ({
   title,
   text,
-  visible,
   hideModal,
   acceptCallback,
   textInputConfig,
@@ -45,7 +42,6 @@ const ConfirmationModal = ({
   return (
     <Modal
       animationType={'slide'}
-      visible={visible}
       transparent={true}
       onRequestClose={hideModal}>
       <View style={styles.container}>

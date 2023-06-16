@@ -7,6 +7,21 @@ type ModalContextProviderProps = {
   children: React.ReactNode;
 };
 
+interface ModalContextType {
+  showHistoryModal: ({entries}: HistoryModalData) => void;
+  showInformationModal: ({text, type}: InformationModalData) => void;
+  showConfirmationModal: ({
+    title,
+    text,
+    acceptCallback,
+    textInputConfig,
+  }: ConfirmationModalData) => void;
+}
+
+type HistoryModalData = {
+  entries: number[];
+};
+
 type InformationModalData = {
   text: string;
   type?: 'ERROR' | 'SUCCESS';
@@ -23,17 +38,6 @@ type ConfirmationModalData = {
   };
 };
 
-interface ModalContextType {
-  showHistoryModal: (data: number[]) => void;
-  showInformationModal: ({text, type}: InformationModalData) => void;
-  showConfirmationModal: ({
-    title,
-    text,
-    acceptCallback,
-    textInputConfig,
-  }: ConfirmationModalData) => void;
-}
-
 export const ModalContext = createContext<ModalContextType | null>(null);
 
 /**
@@ -43,67 +47,51 @@ export const ModalContext = createContext<ModalContextType | null>(null);
  * @returns a modal context provider
  */
 export const ModalContextProvider = ({children}: ModalContextProviderProps) => {
-  const [historyModalData, setHistoryModalData] = useState<number[]>([]);
-  const [isHistoryVisible, setHistoryVisible] = useState(false);
+  const [historyModalData, setHistoryModalData] =
+    useState<HistoryModalData | null>(null);
   const [informationModalData, setInformationModalData] =
-    useState<InformationModalData>({} as InformationModalData);
-  const [isInformationVisible, setInformationVisible] = useState(false);
+    useState<InformationModalData | null>(null);
   const [confirmationModalData, setConfirmationModalData] =
-    useState<ConfirmationModalData>({} as ConfirmationModalData);
-  const [isConfirmationVisible, setConfirmationVisible] = useState(false);
+    useState<ConfirmationModalData | null>(null);
 
-  const showHistoryModal = (data: number[]) => {
+  const showHistoryModal = (data: HistoryModalData) => {
     setHistoryModalData(data);
-    setHistoryVisible(true);
   };
 
-  const showInformationModal = ({text, type}: InformationModalData) => {
-    setInformationModalData({text, type});
-    setInformationVisible(true);
+  const showInformationModal = (data: InformationModalData) => {
+    setInformationModalData(data);
   };
 
-  const showConfirmationModal = ({
-    title,
-    text,
-    acceptCallback,
-    textInputConfig,
-  }: ConfirmationModalData) => {
-    setConfirmationModalData({title, text, acceptCallback, textInputConfig});
-    setConfirmationVisible(true);
+  const showConfirmationModal = (data: ConfirmationModalData) => {
+    setConfirmationModalData(data);
   };
 
   return (
     <ModalContext.Provider
       value={{showHistoryModal, showInformationModal, showConfirmationModal}}>
       {children}
-      <HistoryModal
-        historyEntries={historyModalData}
-        visible={isHistoryVisible}
-        hideModal={() => {
-          setHistoryModalData([]);
-          setHistoryVisible(false);
-        }}
-      />
-      <InformationModal
-        text={informationModalData.text}
-        visible={isInformationVisible}
-        hideModal={() => {
-          setInformationModalData({} as InformationModalData);
-          setInformationVisible(false);
-        }}
-        type={informationModalData.type}
-      />
-      <ConfirmationModal
-        title={confirmationModalData.title}
-        visible={isConfirmationVisible}
-        hideModal={() => {
-          setConfirmationModalData({} as ConfirmationModalData);
-          setConfirmationVisible(false);
-        }}
-        text={confirmationModalData.text}
-        acceptCallback={confirmationModalData.acceptCallback}
-        textInputConfig={confirmationModalData.textInputConfig}
-      />
+      {historyModalData && (
+        <HistoryModal
+          historyEntries={historyModalData.entries}
+          hideModal={() => setHistoryModalData(null)}
+        />
+      )}
+      {informationModalData && (
+        <InformationModal
+          text={informationModalData.text}
+          hideModal={() => setInformationModalData(null)}
+          type={informationModalData.type}
+        />
+      )}
+      {confirmationModalData && (
+        <ConfirmationModal
+          title={confirmationModalData.title}
+          hideModal={() => setConfirmationModalData(null)}
+          text={confirmationModalData.text}
+          acceptCallback={confirmationModalData.acceptCallback}
+          textInputConfig={confirmationModalData.textInputConfig}
+        />
+      )}
     </ModalContext.Provider>
   );
 };

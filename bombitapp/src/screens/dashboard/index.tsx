@@ -23,7 +23,9 @@ const DashboardScreen = () => {
         meanTime={0}
         runs={0}
         status={'OFF'}
-        historyOnPress={() => modal.showHistoryModal(historyDummyData1)}
+        historyOnPress={() =>
+          modal.showHistoryModal({entries: historyDummyData1})
+        }
       />
       <StatusCard
         name={'Entrada 2'}
@@ -31,7 +33,9 @@ const DashboardScreen = () => {
         meanTime={0}
         runs={0}
         status={'OFF'}
-        historyOnPress={() => modal.showHistoryModal(historyDummyData2)}
+        historyOnPress={() =>
+          modal.showHistoryModal({entries: historyDummyData2})
+        }
       />
       <View style={styles.indicatorContainer}>
         <RequestStatusIndicator requestState="IN_PROGRESS" />
