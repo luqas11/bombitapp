@@ -6,6 +6,7 @@ import {
   RequestStatusIndicator,
   TimeLimitCard,
 } from '../../components';
+import {useModalContext} from '../../context';
 import {styles} from './styles';
 
 /**
@@ -13,27 +14,115 @@ import {styles} from './styles';
  * @returns a screen component
  */
 const SettingsScreen = () => {
+  const modal = useModalContext();
+
+  /**
+   * Shows a modal sequence to set and confirm an input renaming. Shows wheter the API call was successful or not.
+   * @param deviceId id of the input to rename
+   */
+  const renameDevice = (deviceId: number) => {
+    modal.showConfirmationModal({
+      title: 'Renombrar dispositivo',
+      text: 'Ingresá el nombre con el que se va a mostrar esta entrada.',
+      textInputConfig: {
+        placeholder: 'Nombre de la entrada',
+        validation: value => Boolean(value),
+      },
+      acceptCallback: value => {
+        console.log(
+          'The input with id ' + deviceId + ' will be renamed as ' + value,
+        );
+        modal.showInformationModal({
+          text: 'El nombre de la entrada se modificó con éxito',
+          type: 'SUCCESS',
+        });
+      },
+    });
+  };
+
+  /**
+   * Shows a modal sequence to confirm the resuming of a stopped input. Shows wheter the API call was successful or not.
+   * @param deviceId id of the input to resume
+   */
+  const resumeDevice = (deviceId: number) => {
+    modal.showConfirmationModal({
+      title: 'Reanudar funcionamiento',
+      text: 'La salida seleccionada va a reanudar su funcionamiento.',
+      acceptCallback: () => {
+        console.log(
+          'The input with id ' + deviceId + ' will resume its operation',
+        );
+        modal.showInformationModal({
+          text: 'El dispositivo reanudó su funcionamiento',
+          type: 'SUCCESS',
+        });
+      },
+    });
+  };
+
+  /**
+   * Shows a modal sequence to confirm the record deletion of an input. Shows wheter the API call was successful or not.
+   * @param deviceId id of the input whose records will be deleted
+   */
+  const deleteDeviceData = (deviceId: number) => {
+    modal.showConfirmationModal({
+      title: 'Borrar registros',
+      text: 'Se van a borrar TODOS los registros, incluyendo historial, promedio y cantidad de arranques.',
+      acceptCallback: () => {
+        console.log(
+          'The records for the input with id ' + deviceId + ' will be deleted',
+        );
+        modal.showInformationModal({
+          text: 'Los registros de la entrada seleccionada fueron eliminados',
+          type: 'SUCCESS',
+        });
+      },
+    });
+  };
+
+  /**
+   * Shows a modal sequence to set and confirm the inputs working time limit. Shows wheter the API call was successful or not.
+   */
+  const setDeviceTimeLimit = () => {
+    modal.showConfirmationModal({
+      title: 'Modificar tiempo límite',
+      text: 'Ingresá el tiempo límite (en minutos) hasta el que van a funcionar las entradas hasta aplicar el corte automático.',
+      textInputConfig: {
+        placeholder: 'Tiempo límite',
+        keyboardType: 'numeric',
+        validation: value => parseInt(value, 10) > 0,
+      },
+      acceptCallback: value => {
+        console.log(
+          'The time limit for all inputs will be set to ' + value + ' minutes',
+        );
+        modal.showInformationModal({
+          text: 'El dispositivo configuró el tiempo límite de funcionamiento correctamente',
+          type: 'SUCCESS',
+        });
+      },
+    });
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <ConfigCard
         title="Entrada 1"
-        deviceId={0}
-        renameDevice={() => {}}
-        resumeDevice={() => {}}
-        deleteDeviceData={() => {}}
-        status="OFF"
+        renameDevice={() => renameDevice(0)}
+        resumeDevice={() => resumeDevice(0)}
+        deleteDeviceData={() => deleteDeviceData(0)}
+        status="STOPPED"
       />
       <ConfigCard
         title="Entrada 2"
-        deviceId={1}
-        renameDevice={() => {}}
-        resumeDevice={() => {}}
-        deleteDeviceData={() => {}}
+        renameDevice={() => renameDevice(1)}
+        resumeDevice={() => resumeDevice(1)}
+        deleteDeviceData={() => deleteDeviceData(1)}
         status="OFF"
       />
-      <TimeLimitCard setDeviceTimeLimit={() => {}} timeLimit={3600} />
+      <TimeLimitCard setDeviceTimeLimit={setDeviceTimeLimit} timeLimit={3600} />
       <View style={styles.indicatorContainer}>
-        <RequestStatusIndicator requestState="IN_PROGRESS" />
+        <RequestStatusIndicator requestState="RESPONSE_OK" />
       </View>
     </ScrollView>
   );

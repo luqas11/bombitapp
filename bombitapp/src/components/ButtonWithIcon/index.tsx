@@ -13,7 +13,10 @@ type ButtonWithIconProps = {
     size?: number;
     color?: string;
   };
-  customStyles?: ViewStyle;
+  customStyles?: {
+    container?: React.CSSProperties;
+    text?: React.CSSProperties;
+  };
   onPress: () => void;
   disabled?: boolean;
 };
@@ -22,8 +25,10 @@ type ButtonWithIconProps = {
  * Button with an icon and a label.
  * @param props component props
  *   @param props.text label text. If undefined, Text component won't be rendered
- *   @param props.customStyles button container custom styles
- *   @param props.iconConfig icon configuration
+ *   @param props.customStyles button custom styles object
+ *     @param props.customStyles.container button container custom styles
+ *     @param props.customStyles.text button text custom styles
+ *   @param props.iconConfig icon configuration. If undefined, no icon will be rendered.
  *     @param props.iconConfig.name icon name
  *     @param props.iconConfig.color icon color
  *     @param props.iconConfig.size icon size
@@ -42,7 +47,7 @@ const ButtonWithIcon = ({
     <TouchableOpacity
       style={[
         styles.container,
-        customStyles,
+        customStyles?.container as ViewStyle,
         disabled && styles.disabledContainer,
       ]}
       onPress={onPress}
@@ -55,7 +60,10 @@ const ButtonWithIcon = ({
         />
       )}
       {text && (
-        <Text style={styles.text} numberOfLines={1} ellipsizeMode="tail">
+        <Text
+          style={[styles.text, customStyles?.text as ViewStyle]}
+          numberOfLines={1}
+          ellipsizeMode="tail">
           {text}
         </Text>
       )}

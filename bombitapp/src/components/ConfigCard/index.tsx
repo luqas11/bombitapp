@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import {View, Text} from 'react-native';
 
@@ -7,10 +6,9 @@ import {styles} from './styles';
 
 type ConfigCardProps = {
   title: string | undefined;
-  deviceId: number | undefined;
-  renameDevice: (deviceId: number, name: string) => void;
-  resumeDevice: (deviceId: number) => void;
-  deleteDeviceData: (deviceId: number) => void;
+  renameDevice: () => void;
+  resumeDevice: () => void;
+  deleteDeviceData: () => void;
   status: 'OFF' | 'STARTING' | 'WORKING' | 'STOPPED' | undefined;
 };
 
@@ -18,16 +16,14 @@ type ConfigCardProps = {
  * Device configuration card, that displays buttons to configure the device.
  * @param props component props
  *   @param props.title card title
- *   @param props.deviceId id of the device displayed in this card
- *   @param props.renameDevice funcion to be called when the rename button is pressed, taking the new name and the device id as parameters
- *   @param props.resumeDevice funcion to be called when the resume button is pressed, taking the device id as a parameter
- *   @param props.deleteDeviceData funcion to be called when the delete button is pressed, taking the device id as a parameter
+ *   @param props.renameDevice funcion to be called when the rename button is pressed
+ *   @param props.resumeDevice funcion to be called when the resume button is pressed
+ *   @param props.deleteDeviceData funcion to be called when the delete button is pressed
  *   @param props.status current device status
  * @returns a card component
  */
 const ConfigCard = ({
   title,
-  deviceId,
   renameDevice,
   resumeDevice,
   deleteDeviceData,
@@ -45,23 +41,23 @@ const ConfigCard = ({
       <Text style={styles.title}>{title}</Text>
       <View style={styles.buttonsContainer}>
         <ButtonWithIcon
-          customStyles={styles.button}
+          customStyles={{container: styles.button}}
           iconConfig={{name: 'pen', size: 40}}
           text="Renombrar"
-          onPress={() => {}}
+          onPress={renameDevice}
         />
         <ButtonWithIcon
-          customStyles={styles.button}
+          customStyles={{container: styles.button}}
           iconConfig={{name: 'arrow-up-circle', size: 40}}
           text="Reanudar"
-          onPress={() => {}}
+          onPress={resumeDevice}
           disabled={status !== 'STOPPED'}
         />
         <ButtonWithIcon
-          customStyles={styles.button}
+          customStyles={{container: styles.button}}
           iconConfig={{name: 'trash-can', size: 40}}
           text="Borrar"
-          onPress={() => {}}
+          onPress={deleteDeviceData}
         />
       </View>
     </View>

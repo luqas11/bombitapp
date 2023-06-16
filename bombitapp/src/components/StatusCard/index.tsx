@@ -63,7 +63,7 @@ const StatusCard = ({
           text={'Historial'}
           iconConfig={{name: 'progress-clock'}}
           onPress={historyOnPress}
-          customStyles={styles.button}
+          customStyles={{container: styles.button}}
         />
       </View>
     </View>
