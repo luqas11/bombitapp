@@ -7,6 +7,7 @@ import {
   TimeLimitCard,
 } from '../../components';
 import {useModalContext} from '../../context';
+import {useStore} from '../../state';
 import {styles} from './styles';
 
 /**
@@ -15,6 +16,8 @@ import {styles} from './styles';
  */
 const SettingsScreen = () => {
   const modal = useModalContext();
+  const currentStatus = useStore(state => state.status);
+  const requestStatus = useStore(state => state.requestStatus);
 
   /**
    * Shows a modal sequence to set and confirm an input renaming. Shows wheter the API call was successful or not.
@@ -111,18 +114,21 @@ const SettingsScreen = () => {
         renameDevice={() => renameDevice(0)}
         resumeDevice={() => resumeDevice(0)}
         deleteDeviceData={() => deleteDeviceData(0)}
-        status="STOPPED"
+        status={currentStatus?.outputs[0].status}
       />
       <ConfigCard
         title="Entrada 2"
         renameDevice={() => renameDevice(1)}
         resumeDevice={() => resumeDevice(1)}
         deleteDeviceData={() => deleteDeviceData(1)}
-        status="OFF"
+        status={currentStatus?.outputs[1].status}
       />
-      <TimeLimitCard setDeviceTimeLimit={setDeviceTimeLimit} timeLimit={3600} />
+      <TimeLimitCard
+        setDeviceTimeLimit={setDeviceTimeLimit}
+        timeLimit={currentStatus?.time_limit}
+      />
       <View style={styles.indicatorContainer}>
-        <RequestStatusIndicator requestState="RESPONSE_OK" />
+        <RequestStatusIndicator requestState={requestStatus} />
       </View>
     </ScrollView>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 
 import ButtonWithIcon from '../ButtonWithIcon';
+import {DeviceStatuses} from '../../helpers';
 import {styles} from './styles';
 
 type ConfigCardProps = {
@@ -9,7 +10,7 @@ type ConfigCardProps = {
   renameDevice: () => void;
   resumeDevice: () => void;
   deleteDeviceData: () => void;
-  status: 'OFF' | 'STARTING' | 'WORKING' | 'STOPPED' | undefined;
+  status: DeviceStatuses | undefined;
 };
 
 /**
@@ -29,15 +30,16 @@ const ConfigCard = ({
   deleteDeviceData,
   status,
 }: ConfigCardProps) => {
-  const statusStyles = {
-    OFF: styles.statusOff,
-    STARTING: styles.statusOn,
-    WORKING: styles.statusOn,
-    STOPPED: styles.statusStop,
-  };
+  const statusStyles = [
+    styles.statusOff,
+    styles.statusOn,
+    styles.statusOn,
+    styles.statusStop,
+  ];
 
   return (
-    <View style={[styles.container, status && statusStyles[status]]}>
+    <View
+      style={[styles.container, status !== undefined && statusStyles[status]]}>
       <Text style={styles.title}>{title}</Text>
       <View style={styles.buttonsContainer}>
         <ButtonWithIcon
@@ -51,7 +53,7 @@ const ConfigCard = ({
           iconConfig={{name: 'arrow-up-circle', size: 40}}
           text="Reanudar"
           onPress={resumeDevice}
-          disabled={status !== 'STOPPED'}
+          disabled={status !== 3}
         />
         <ButtonWithIcon
           customStyles={{container: styles.button}}

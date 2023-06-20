@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -9,6 +9,8 @@ import {
   DASHBOARD_SCREENNAME,
   SETTINGS_SCREENNAME,
 } from './constants';
+import {useStore} from '../state';
+import {RequestStatuses} from '../components/RequestStatusIndicator';
 import {styles} from './styles';
 
 const Tab = createBottomTabNavigator();
@@ -17,7 +19,35 @@ const Tab = createBottomTabNavigator();
  * App main navigator. Controls the navigation between the 3 app screens.
  * @returns a tab navigator component
  */
-const CustomNavigator = (): JSX.Element => {
+const CustomNavigator = () => {
+  const fetchStatus = useStore(state => state.fetchStatus);
+  const setRequestStatus = useStore(state => state.setRequestStatus);
+
+  useEffect(() => {
+    let isMounted = true;
+    /**
+     * Gets status from the remote device.
+     */
+    const updateStatus = async () => {
+      setRequestStatus(RequestStatuses.IN_PROGRESS);
+      try {
+        await fetchStatus();
+        setRequestStatus(RequestStatuses.RESPONSE_OK);
+      } catch (error) {
+        setRequestStatus(RequestStatuses.RESPONSE_ERROR);
+      } finally {
+        setTimeout(() => {
+          isMounted && updateStatus();
+        }, 2000);
+      }
+    };
+
+    updateStatus();
+    return () => {
+      isMounted = false;
+    };
+  }, [fetchStatus, setRequestStatus]);
+
   return (
     <Tab.Navigator
       initialRouteName={DASHBOARD_SCREENNAME}

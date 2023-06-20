@@ -5,8 +5,15 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Colors from '../../constants/colors';
 import {styles} from './styles';
 
+export enum RequestStatuses {
+  IN_PROGRESS,
+  RESPONSE_ERROR,
+  RESPONSE_OK,
+  NO_DATA,
+}
+
 type RequestStatusIndicatorProps = {
-  requestState: 'IN_PROGRESS' | 'RESPONSE_ERROR' | 'RESPONSE_OK' | undefined;
+  requestState: RequestStatuses;
 };
 
 /**
@@ -19,28 +26,28 @@ const RequestStatusIndicator = ({
   requestState,
 }: RequestStatusIndicatorProps) => {
   const backgroundStyles = {
-    RESPONSE_OK: styles.responseOk,
-    RESPONSE_ERROR: styles.responseError,
+    [RequestStatuses.RESPONSE_OK]: styles.responseOk,
+    [RequestStatuses.RESPONSE_ERROR]: styles.responseError,
   };
   const inidcatorIcons = {
-    NO_DATA: 'information',
-    RESPONSE_OK: 'check',
-    RESPONSE_ERROR: 'alert',
+    [RequestStatuses.NO_DATA]: 'information',
+    [RequestStatuses.RESPONSE_OK]: 'check',
+    [RequestStatuses.RESPONSE_ERROR]: 'alert',
   };
 
   return (
     <View
       style={[
         styles.container,
-        requestState &&
-          requestState !== 'IN_PROGRESS' &&
+        (requestState === RequestStatuses.RESPONSE_OK ||
+          requestState === RequestStatuses.RESPONSE_ERROR) &&
           backgroundStyles[requestState],
       ]}>
-      {requestState === 'IN_PROGRESS' ? (
+      {requestState === RequestStatuses.IN_PROGRESS ? (
         <ActivityIndicator size={70} color={'#00FFFF'} />
       ) : (
         <MaterialCommunityIcons
-          name={inidcatorIcons[requestState ?? 'NO_DATA']}
+          name={inidcatorIcons[requestState]}
           color={Colors.text}
           size={50}
         />

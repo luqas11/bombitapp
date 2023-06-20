@@ -11,7 +11,7 @@
         "history": [61, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "status": 0,
+        "status": 2,
         "current_time": 150,
         "mean_time": 554,
         "run_count": 10,

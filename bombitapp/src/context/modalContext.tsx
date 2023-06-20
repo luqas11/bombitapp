@@ -2,6 +2,7 @@ import React, {createContext, useContext, useState} from 'react';
 import {KeyboardTypeOptions} from 'react-native';
 
 import {ConfirmationModal, HistoryModal, InformationModal} from '../components';
+import {InformationModalTypes} from '../components/InformationModal';
 
 type ModalContextProviderProps = {
   children: React.ReactNode;
@@ -19,12 +20,12 @@ interface ModalContextType {
 }
 
 type HistoryModalData = {
-  entries: number[];
+  entries?: number[];
 };
 
 type InformationModalData = {
   text: string;
-  type?: 'ERROR' | 'SUCCESS';
+  type?: InformationModalTypes;
 };
 
 type ConfirmationModalData = {

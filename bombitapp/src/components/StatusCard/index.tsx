@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-import {parseTime} from '../../helpers';
+import {DeviceStatuses, parseTime} from '../../helpers';
 import ButtonWithIcon from '../ButtonWithIcon';
 import {styles} from './styles';
 
@@ -10,7 +10,7 @@ type StatusCardProps = {
   currentTime: number | undefined;
   meanTime: number | undefined;
   runs: number | undefined;
-  status: 'OFF' | 'STARTING' | 'WORKING' | 'STOPPED' | undefined;
+  status: DeviceStatuses | undefined;
   historyOnPress: () => void;
 };
 
@@ -33,15 +33,16 @@ const StatusCard = ({
   status,
   historyOnPress,
 }: StatusCardProps): JSX.Element => {
-  const statusStyles = {
-    OFF: styles.statusOff,
-    STARTING: styles.statusOn,
-    WORKING: styles.statusOn,
-    STOPPED: styles.statusStop,
-  };
+  const statusStyles = [
+    styles.statusOff,
+    styles.statusOn,
+    styles.statusOn,
+    styles.statusStop,
+  ];
 
   return (
-    <View style={[styles.container, status && statusStyles[status]]}>
+    <View
+      style={[styles.container, status !== undefined && statusStyles[status]]}>
       <View>
         <Text style={styles.name}>{name ?? '-'}</Text>
         <Text style={styles.time}>

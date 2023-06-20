@@ -4,10 +4,12 @@ import {Modal, Text, View} from 'react-native';
 import ButtonWithIcon from '../ButtonWithIcon';
 import {styles} from './styles';
 
+export type InformationModalTypes = 'ERROR' | 'SUCCESS';
+
 type InformationModalProps = {
   text: string;
   hideModal: () => void;
-  type: 'ERROR' | 'SUCCESS' | undefined;
+  type: InformationModalTypes | undefined;
 };
 
 /**

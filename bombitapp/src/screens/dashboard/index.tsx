@@ -3,6 +3,7 @@ import {View} from 'react-native';
 
 import {RequestStatusIndicator, StatusCard} from '../../components';
 import {useModalContext} from '../../context';
+import {useStore} from '../../state';
 import {styles} from './styles';
 
 /**
@@ -11,34 +12,33 @@ import {styles} from './styles';
  */
 const DashboardScreen = () => {
   const modal = useModalContext();
-
-  const historyDummyData1 = [] as number[];
-  const historyDummyData2 = [23, 0, 5, 213, 0, 2435, 23, 123];
+  const currentStatus = useStore(state => state.status);
+  const requestStatus = useStore(state => state.requestStatus);
 
   return (
     <View style={styles.container}>
       <StatusCard
         name={'Entrada 1'}
-        currentTime={0}
-        meanTime={0}
-        runs={0}
-        status={'OFF'}
+        currentTime={currentStatus?.outputs[0].current_time}
+        meanTime={currentStatus?.outputs[0].mean_time}
+        runs={currentStatus?.outputs[0].run_count}
+        status={currentStatus?.outputs[0].status}
         historyOnPress={() =>
-          modal.showHistoryModal({entries: historyDummyData1})
+          modal.showHistoryModal({entries: currentStatus?.outputs[0].history})
         }
       />
       <StatusCard
         name={'Entrada 2'}
-        currentTime={0}
-        meanTime={0}
-        runs={0}
-        status={'OFF'}
+        currentTime={currentStatus?.outputs[1].current_time}
+        meanTime={currentStatus?.outputs[1].mean_time}
+        runs={currentStatus?.outputs[1].run_count}
+        status={currentStatus?.outputs[1].status}
         historyOnPress={() =>
-          modal.showHistoryModal({entries: historyDummyData2})
+          modal.showHistoryModal({entries: currentStatus?.outputs[1].history})
         }
       />
       <View style={styles.indicatorContainer}>
-        <RequestStatusIndicator requestState="IN_PROGRESS" />
+        <RequestStatusIndicator requestState={requestStatus} />
       </View>
     </View>
   );

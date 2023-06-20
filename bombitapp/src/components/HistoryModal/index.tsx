@@ -2,11 +2,12 @@ import React from 'react';
 import {FlatList, Modal, Text, View} from 'react-native';
 
 import ButtonWithIcon from '../ButtonWithIcon';
-import {parseTime} from '../../helpers';
+import {fixListLength, parseTime} from '../../helpers';
+import {HISTORY_LIST_LENGTH} from '../../constants';
 import {styles} from './styles';
 
 type HistoryModalProps = {
-  historyEntries: number[];
+  historyEntries?: number[];
   hideModal: () => void;
 };
 
@@ -18,7 +19,11 @@ type HistoryModalProps = {
  * @returns a modal component
  */
 const HistoryModal = ({historyEntries, hideModal}: HistoryModalProps) => {
-  const LIST_MIN_LENGTH = 10;
+  const fixedLengthList = fixListLength(
+    historyEntries ?? [],
+    HISTORY_LIST_LENGTH,
+  );
+
   /**
    * Renders a history entry with top and bottom dividers
    *   @param item list item
@@ -28,7 +33,7 @@ const HistoryModal = ({historyEntries, hideModal}: HistoryModalProps) => {
   const renderItem = ({item}: {item: number}) => (
     <View>
       <View style={styles.divider} />
-      <Text style={styles.entryText}>{parseTime(item)}</Text>
+      <Text style={styles.entryText}>{item === 0 ? '-' : parseTime(item)}</Text>
     </View>
   );
 
@@ -41,17 +46,7 @@ const HistoryModal = ({historyEntries, hideModal}: HistoryModalProps) => {
         <View style={styles.modalContainer}>
           <Text style={styles.title}>Historial de la entrada</Text>
           <View>
-            <FlatList data={historyEntries} renderItem={renderItem} />
-            {historyEntries.length < LIST_MIN_LENGTH &&
-              Array.from(
-                {length: LIST_MIN_LENGTH - historyEntries.length},
-                (_, i) => (
-                  <View key={i}>
-                    <View style={styles.divider} />
-                    <Text style={styles.entryText}>-</Text>
-                  </View>
-                ),
-              )}
+            <FlatList data={fixedLengthList} renderItem={renderItem} />
             <View style={styles.divider} />
           </View>
           <ButtonWithIcon
