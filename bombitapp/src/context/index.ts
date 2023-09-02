@@ -1,1 +1,1 @@
-export * from './MModalContext';
+export * from './ModalContext';
