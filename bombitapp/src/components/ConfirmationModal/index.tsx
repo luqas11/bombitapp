@@ -1,16 +1,27 @@
 /* eslint-disable jsdoc/check-param-names */
 import React, {useState} from 'react';
-import {Modal, Text, TextInput, View, KeyboardTypeOptions} from 'react-native';
+import {
+  Modal,
+  Text,
+  TextInput,
+  View,
+  KeyboardTypeOptions,
+  ActivityIndicator,
+} from 'react-native';
+import axios from 'axios';
 
 import ButtonWithIcon from '../ButtonWithIcon';
 import Colors from '../../constants/colors';
+import {ErrorResponse} from '../../helpers';
 import {styles} from './styles';
 
 type ConfirmationModalProps = {
   title: string;
   text: string;
   hideModal: () => void;
-  acceptCallback: (value: string) => void;
+  acceptCallback: (value: string) => Promise<void>;
+  successCallback: () => void;
+  errorCallback: (error?: ErrorResponse) => void;
   textInputConfig?: {
     placeholder: string;
     keyboardType?: KeyboardTypeOptions;
@@ -25,6 +36,8 @@ type ConfirmationModalProps = {
  *   @param props.text modal body text
  *   @param props.hideModal funcion to hide the modal
  *   @param props.acceptCallback funcion to be called when the accept button is pressed
+ *   @param props.successCallback function to be called when the acceptCallback is successfully executed
+ *   @param props.errorCallback function to be called when the acceptCallback throws an error
  *   @param props.textInputConfig text input parameters
  *     @param props.textInputConfig.placeholder any additional props for the TextInput component
  *     @param props.textInputConfig.keyboardType any additional props for the TextInput component
@@ -36,14 +49,17 @@ const ConfirmationModal = ({
   text,
   hideModal,
   acceptCallback,
+  successCallback,
+  errorCallback,
   textInputConfig,
 }: ConfirmationModalProps) => {
-  const [inputText, onChangeInputText] = useState('');
+  const [inputText, setInputText] = useState('');
+  const [isLoading, setLoading] = useState(false);
   return (
     <Modal
       animationType={'slide'}
       transparent={true}
-      onRequestClose={hideModal}>
+      onRequestClose={isLoading ? undefined : hideModal}>
       <View style={styles.container}>
         <View style={styles.modalContainer}>
           <View>
@@ -53,36 +69,51 @@ const ConfirmationModal = ({
           {textInputConfig && (
             <TextInput
               style={styles.input}
-              onChangeText={onChangeInputText}
+              onChangeText={setInputText}
               value={inputText}
               placeholder={textInputConfig.placeholder}
               keyboardType={textInputConfig.keyboardType}
               placeholderTextColor={Colors.paragraph}
             />
           )}
-          <View style={styles.buttonsContainer}>
-            <ButtonWithIcon
-              text={'Aceptar'}
-              onPress={() => {
-                acceptCallback(inputText);
-                textInputConfig && onChangeInputText('');
-                hideModal();
-              }}
-              disabled={
-                textInputConfig?.validation &&
-                !textInputConfig.validation(inputText)
-              }
-              customStyles={{text: styles.buttonText}}
-            />
-            <ButtonWithIcon
-              text={'Cancelar'}
-              onPress={() => {
-                textInputConfig && onChangeInputText('');
-                hideModal();
-              }}
-              customStyles={{text: styles.buttonText}}
-            />
-          </View>
+          {isLoading ? (
+            <ActivityIndicator size={50} color="#00FFFF" />
+          ) : (
+            <View style={styles.buttonsContainer}>
+              <ButtonWithIcon
+                text={'Aceptar'}
+                onPress={async () => {
+                  try {
+                    setLoading(true);
+                    await acceptCallback(inputText);
+                    successCallback();
+                  } catch (error) {
+                    errorCallback(
+                      axios.isAxiosError(error)
+                        ? (error?.response?.data as ErrorResponse)
+                        : undefined,
+                    );
+                  }
+                  textInputConfig && setInputText('');
+                  setLoading(false);
+                  hideModal();
+                }}
+                disabled={
+                  textInputConfig?.validation &&
+                  !textInputConfig.validation(inputText)
+                }
+                customStyles={{text: styles.buttonText}}
+              />
+              <ButtonWithIcon
+                text={'Cancelar'}
+                onPress={() => {
+                  textInputConfig && setInputText('');
+                  hideModal();
+                }}
+                customStyles={{text: styles.buttonText}}
+              />
+            </View>
+          )}
         </View>
       </View>
     </Modal>

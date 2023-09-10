@@ -19,6 +19,8 @@ type Response = {
   data: DeviceData;
 };
 
+export type ErrorResponse = {error_code: string; error_message: string};
+
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
   timeout: REQUEST_TIMEOUT,

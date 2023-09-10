@@ -3,6 +3,7 @@ import {KeyboardTypeOptions} from 'react-native';
 
 import {ConfirmationModal, HistoryModal, InformationModal} from '../components';
 import {InformationModalTypes} from '../components/InformationModal';
+import {ErrorResponse} from '../helpers';
 
 type ModalContextProviderProps = {
   children: React.ReactNode;
@@ -31,7 +32,9 @@ type InformationModalData = {
 type ConfirmationModalData = {
   title: string;
   text: string;
-  acceptCallback: (value: string) => void;
+  acceptCallback: (value: string) => Promise<void>;
+  successCallback: () => void;
+  errorCallback: (error?: ErrorResponse) => void;
   textInputConfig?: {
     placeholder: string;
     keyboardType?: KeyboardTypeOptions;
@@ -90,6 +93,8 @@ export const ModalContextProvider = ({children}: ModalContextProviderProps) => {
           hideModal={() => setConfirmationModalData(null)}
           text={confirmationModalData.text}
           acceptCallback={confirmationModalData.acceptCallback}
+          successCallback={confirmationModalData.successCallback}
+          errorCallback={confirmationModalData.errorCallback}
           textInputConfig={confirmationModalData.textInputConfig}
         />
       )}
