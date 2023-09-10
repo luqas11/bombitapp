@@ -23,6 +23,7 @@ const DashboardScreen = () => {
         meanTime={currentStatus?.outputs[0].mean_time}
         runs={currentStatus?.outputs[0].run_count}
         status={currentStatus?.outputs[0].status}
+        sensorStatus={currentStatus?.outputs[0].sensor_status}
         historyOnPress={() =>
           modal.showHistoryModal({entries: currentStatus?.outputs[0].history})
         }
@@ -33,6 +34,7 @@ const DashboardScreen = () => {
         meanTime={currentStatus?.outputs[1].mean_time}
         runs={currentStatus?.outputs[1].run_count}
         status={currentStatus?.outputs[1].status}
+        sensorStatus={currentStatus?.outputs[1].sensor_status}
         historyOnPress={() =>
           modal.showHistoryModal({entries: currentStatus?.outputs[1].history})
         }

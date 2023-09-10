@@ -27,4 +27,14 @@ export const styles = StyleSheet.create({
   recordTitle: {color: Colors.text, fontSize: 14},
   recordValue: {color: Colors.text, fontSize: 18},
   button: {height: 100, aspectRatio: 1},
+  sensorOff: {
+    color: 'red',
+    fontSize: 14,
+    marginTop: 4,
+  },
+  sensorOn: {
+    color: 'green',
+    fontSize: 14,
+    marginTop: 4,
+  },
 });

@@ -11,6 +11,7 @@ type StatusCardProps = {
   meanTime: number | undefined;
   runs: number | undefined;
   status: DeviceStatuses | undefined;
+  sensorStatus: boolean | undefined;
   historyOnPress: () => void;
 };
 
@@ -22,6 +23,7 @@ type StatusCardProps = {
  *   @param props.meanTime mean time value
  *   @param props.runs total run count
  *   @param props.status current device status
+ *   @param props.sensorStatus the current status of the device sensor
  *   @param props.historyOnPress funcion to be called when the history button is pressed
  * @returns a card component
  */
@@ -31,6 +33,7 @@ const StatusCard = ({
   meanTime,
   runs,
   status,
+  sensorStatus,
   historyOnPress,
 }: StatusCardProps): JSX.Element => {
   const statusStyles = [
@@ -58,6 +61,11 @@ const StatusCard = ({
             <Text style={styles.recordValue}>{runs ?? '-'}</Text>
           </View>
         </View>
+        {status === 3 && (
+          <Text style={sensorStatus ? styles.sensorOn : styles.sensorOff}>
+            {'Automático ' + (sensorStatus ? 'ENCENDIDO' : 'APAGADO')}
+          </Text>
+        )}
       </View>
       <View>
         <ButtonWithIcon
