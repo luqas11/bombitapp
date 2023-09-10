@@ -885,7 +885,7 @@
 					"body": "{\n    \"error_code\": \"ERR_04\",\n    \"error_message\": \"Invalid output number\"\n}"
 				},
 				{
-					"name": "Invalid output number Copy",
+					"name": "Output not stopped",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],

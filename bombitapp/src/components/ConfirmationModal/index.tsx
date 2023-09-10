@@ -10,7 +10,7 @@ type ConfirmationModalProps = {
   title: string;
   text: string;
   hideModal: () => void;
-  acceptCallback: (value?: string) => void;
+  acceptCallback: (value: string) => void;
   textInputConfig?: {
     placeholder: string;
     keyboardType?: KeyboardTypeOptions;

@@ -51,3 +51,31 @@ export const getStatus = async () => {
   const {data}: Response = await axiosInstance.get('/status');
   return data;
 };
+
+/**
+ * Clears the recorded data from a specified device
+ * @param deviceId id of the device to be cleared
+ */
+export const clearHistory = async (deviceId: number) => {
+  await axiosInstance.get('/clear-history', {params: {input: deviceId}});
+};
+
+/**
+ * Change the working time limit for the device outputs
+ * @param timeLimit time to be set as the new limit
+ */
+export const changeTimeLimit = async (timeLimit: string) => {
+  await axiosInstance.get('/change-time-limit', {
+    params: {time_limit: timeLimit},
+  });
+};
+
+/**
+ * Resumes an output stopped for exceeding the time limit
+ * @param deviceId id of the output to be resumed
+ */
+export const resumeOutput = async (deviceId: number) => {
+  await axiosInstance.get('/resume-output', {
+    params: {output: deviceId},
+  });
+};

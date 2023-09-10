@@ -31,7 +31,7 @@ type InformationModalData = {
 type ConfirmationModalData = {
   title: string;
   text: string;
-  acceptCallback: (value?: string) => void;
+  acceptCallback: (value: string) => void;
   textInputConfig?: {
     placeholder: string;
     keyboardType?: KeyboardTypeOptions;

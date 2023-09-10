@@ -8,6 +8,7 @@ import {
 } from '../../components';
 import {useModalContext} from '../../context';
 import {useStore} from '../../state';
+import {changeTimeLimit, clearHistory, resumeOutput} from '../../helpers';
 import {styles} from './styles';
 
 /**
@@ -51,10 +52,11 @@ const SettingsScreen = () => {
     modal.showConfirmationModal({
       title: 'Reanudar funcionamiento',
       text: 'La salida seleccionada va a reanudar su funcionamiento.',
-      acceptCallback: () => {
+      acceptCallback: async () => {
         console.log(
           'The input with id ' + deviceId + ' will resume its operation',
         );
+        await resumeOutput(deviceId);
         modal.showInformationModal({
           text: 'El dispositivo reanudó su funcionamiento',
           type: 'SUCCESS',
@@ -71,10 +73,11 @@ const SettingsScreen = () => {
     modal.showConfirmationModal({
       title: 'Borrar registros',
       text: 'Se van a borrar TODOS los registros, incluyendo historial, promedio y cantidad de arranques.',
-      acceptCallback: () => {
+      acceptCallback: async () => {
         console.log(
           'The records for the input with id ' + deviceId + ' will be deleted',
         );
+        await clearHistory(deviceId);
         modal.showInformationModal({
           text: 'Los registros de la entrada seleccionada fueron eliminados',
           type: 'SUCCESS',
@@ -95,10 +98,11 @@ const SettingsScreen = () => {
         keyboardType: 'numeric',
         validation: value => parseInt(value, 10) > 0,
       },
-      acceptCallback: value => {
+      acceptCallback: async value => {
         console.log(
           'The time limit for all inputs will be set to ' + value + ' minutes',
         );
+        await changeTimeLimit(value);
         modal.showInformationModal({
           text: 'El dispositivo configuró el tiempo límite de funcionamiento correctamente',
           type: 'SUCCESS',
