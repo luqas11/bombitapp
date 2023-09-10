@@ -64,7 +64,7 @@ const SettingsScreen = () => {
   };
 
   /**
-   * Shows a modal sequence to confirm the record deletion of an input. Shows wheter the API call was successful or not.
+   * Shows a modal sequence to confirm the record deletion of an input. Shows whether the API call was successful or not.
    * @param deviceId id of the input whose records will be deleted
    */
   const deleteDeviceData = (deviceId: number) => {
