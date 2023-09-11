@@ -12,6 +12,7 @@
     "assemble": "cd android && gradlew assembleRelease"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.19.3",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "@types/react-native-vector-icons": "^6.4.13",

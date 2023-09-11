@@ -2,6 +2,7 @@
 import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {AboutScreen, DashboardScreen, SettingsScreen} from '../screens';
 import {
@@ -11,6 +12,7 @@ import {
 } from './constants';
 import {useStore} from '../state';
 import {RequestStatuses} from '../components/RequestStatusIndicator';
+import {DEVICES_DEFAULT_NAMES, DEVICE_NAME_PREFIX} from '../constants';
 import {styles} from './styles';
 
 const Tab = createBottomTabNavigator();
@@ -22,6 +24,30 @@ const Tab = createBottomTabNavigator();
 const CustomNavigator = () => {
   const fetchStatus = useStore(state => state.fetchStatus);
   const setRequestStatus = useStore(state => state.setRequestStatus);
+  const setDevicesNames = useStore(state => state.setDevicesNames);
+
+  useEffect(() => {
+    /**
+     * Gets the devices names from AsyncStorage and sets them to the store
+     */
+    const getDevicesNames = async () => {
+      let name0 = DEVICES_DEFAULT_NAMES[0];
+      let name1 = DEVICES_DEFAULT_NAMES[1];
+      try {
+        const _name0 = await AsyncStorage.getItem(DEVICE_NAME_PREFIX + '0');
+        const _name1 = await AsyncStorage.getItem(DEVICE_NAME_PREFIX + '1');
+        if (_name0) {
+          name0 = _name0;
+        }
+        if (_name1) {
+          name1 = _name1;
+        }
+      } catch (e) {}
+      setDevicesNames([name0, name1]);
+    };
+
+    getDevicesNames();
+  }, [setDevicesNames]);
 
   useEffect(() => {
     let isMounted = true;

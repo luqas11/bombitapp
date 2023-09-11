@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, ScrollView} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   ConfigCard,
@@ -9,6 +10,7 @@ import {
 import {useModalContext} from '../../context';
 import {useStore} from '../../state';
 import {changeTimeLimit, clearHistory, resumeOutput} from '../../helpers';
+import {DEVICE_NAME_PREFIX} from '../../constants';
 import {styles} from './styles';
 
 /**
@@ -19,6 +21,8 @@ const SettingsScreen = () => {
   const modal = useModalContext();
   const currentStatus = useStore(state => state.status);
   const requestStatus = useStore(state => state.requestStatus);
+  const devicesNames = useStore(state => state.names);
+  const setDeviceName = useStore(state => state.setDeviceName);
 
   /**
    * Shows a modal sequence to set and confirm an input renaming. Shows wheter the API call was successful or not.
@@ -33,9 +37,8 @@ const SettingsScreen = () => {
         validation: value => Boolean(value),
       },
       acceptCallback: async value => {
-        console.log(
-          'The input with id ' + deviceId + ' will be renamed as ' + value,
-        );
+        await AsyncStorage.setItem(DEVICE_NAME_PREFIX + deviceId, value);
+        setDeviceName(value, deviceId);
       },
       successCallback: () => {
         modal.showInformationModal({
@@ -45,7 +48,7 @@ const SettingsScreen = () => {
       },
       errorCallback: () => {
         modal.showInformationModal({
-          text: 'El dispositivo no pudo modificar el nombre de la entrada.',
+          text: 'La app no pudo modificar el nombre de la entrada.',
           type: 'ERROR',
         });
       },
@@ -143,14 +146,14 @@ const SettingsScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <ConfigCard
-        title="Entrada 1"
+        title={devicesNames?.[0]}
         renameDevice={() => renameDevice(0)}
         resumeDevice={() => resumeDevice(0)}
         deleteDeviceData={() => deleteDeviceData(0)}
         status={currentStatus?.outputs[0].status}
       />
       <ConfigCard
-        title="Entrada 2"
+        title={devicesNames?.[1]}
         renameDevice={() => renameDevice(1)}
         resumeDevice={() => resumeDevice(1)}
         deleteDeviceData={() => deleteDeviceData(1)}
