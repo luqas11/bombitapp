@@ -13,7 +13,7 @@ const AboutScreen = () => {
     {
       title: 'Versión 5.0.0',
       date: '4-6-2023',
-      content: '- Reescritura de la app en Typescript',
+      content: '- Reescritura de la app en TypeScript',
     },
     {
       title: 'Versión 4.0.0',
