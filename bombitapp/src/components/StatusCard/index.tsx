@@ -54,7 +54,9 @@ const StatusCard = ({
         <View style={styles.recordsContainer}>
           <View>
             <Text style={styles.recordTitle}>Promedio</Text>
-            <Text style={styles.recordValue}>{meanTime ?? '-'}</Text>
+            <Text style={styles.recordValue}>
+              {meanTime !== undefined ? parseTime(meanTime) : '-'}
+            </Text>
           </View>
           <View>
             <Text style={styles.recordTitle}>Arranques</Text>
