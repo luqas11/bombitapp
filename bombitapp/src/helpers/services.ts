@@ -1,5 +1,7 @@
 import axios from 'axios';
-import {BASE_URL, REQUEST_TIMEOUT} from '../constants';
+import Config from 'react-native-config';
+
+import {REQUEST_TIMEOUT} from '../constants';
 
 export type DeviceStatuses = 0 | 1 | 2 | 3;
 
@@ -22,7 +24,7 @@ type Response = {
 export type ErrorResponse = {error_code: string; error_message: string};
 
 const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: Config.BASE_URL,
   timeout: REQUEST_TIMEOUT,
 });
 
