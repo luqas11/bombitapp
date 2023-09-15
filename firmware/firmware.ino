@@ -1,15 +1,25 @@
 #include <ESP8266WebServer.h>
+#include "JSONUtils.h"
 #include "WiFiUtils.h"
 #include "EEPROMUtils.h"
+#include "DataTypes.h"
 #include "config.h"
 
 /*
    Version 5.0.0
-   13-9-2023
+   xx-xx-2023
 */
 
 // LED pin to indicate the network connection status
 const int WIFI_STATUS_LED = 2;
+// Number of inputs connected to the device
+const int INPUTS_NUMBER = 2;
+// Default working time limit
+const uint16_t DEFAULT_TIME_LIMIT = 90;
+
+// State variables
+Output outputsData[INPUTS_NUMBER] = {};
+uint16_t timeLimit = DEFAULT_TIME_LIMIT;
 
 // HTTP server instance
 ESP8266WebServer server(80);
