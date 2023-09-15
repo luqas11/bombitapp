@@ -3,9 +3,7 @@
 
 #include "Arduino.h"
 
-/*
-    Structure able to hold all the outputs information that is relevant to the client.
-*/
+// Structure able to hold all the outputs information that is relevant to the client.
 struct Output
 {
     uint8_t status;
