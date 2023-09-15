@@ -48,7 +48,8 @@ void loop()
 
 void handleStatus()
 {
-    server.send(200, "text/plain", "Device status");
+    String response = formatStatus(timeLimit, outputsData, INPUTS_NUMBER);
+    server.send(200, "application/json", response);
 }
 
 void handleClear()
@@ -71,5 +72,6 @@ void handleResume()
 
 void handleNotFound()
 {
-    server.send(404, "text/plain", "Not found");
+    String response = formatError("ERR_00", "URL not found");
+    server.send(404, "application/json", response);
 }

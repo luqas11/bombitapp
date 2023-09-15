@@ -8,6 +8,6 @@
 String formatError(String error_code, String error_message);
 
 // Creates a JSON string with the given outputs values.
-String formatStatus(uint16_t timeLimit, Output outputData[], uint8_t outputsNumber);
+String formatStatus(uint16_t timeLimit, Output outputsData[], uint8_t outputsNumber);
 
 #endif

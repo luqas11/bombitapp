@@ -19,8 +19,7 @@
 					"path": [
 						"status"
 					]
-				},
-				"description": "Retorna toda la información relativa al estado del dispositivo en el momento."
+				}
 			},
 			"response": [
 				{
@@ -326,6 +325,63 @@
 			]
 		},
 		{
+			"name": "Not found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/not-found",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"not-found"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/not-found",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"not-found"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_code\": \"ERR_00\",\n    \"error_message\": \"URL not found\"\n}"
+				}
+			]
+		},
+		{
 			"name": "Clear history",
 			"request": {
 				"method": "GET",
@@ -344,8 +400,7 @@
 							"value": "0"
 						}
 					]
-				},
-				"description": "Borra los registros de una entrada en particular."
+				}
 			},
 			"response": [
 				{
@@ -531,8 +586,7 @@
 							"value": "3600"
 						}
 					]
-				},
-				"description": "Cambia el tiempo límite de funcionamiento de una salida antes de activar el corte automático."
+				}
 			},
 			"response": [
 				{
@@ -718,8 +772,7 @@
 							"value": "0"
 						}
 					]
-				},
-				"description": "Reanuda el funcionamiento de una salida que se detuvo por un corte automático."
+				}
 			},
 			"response": [
 				{
