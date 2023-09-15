@@ -1,5 +1,6 @@
 #include <ESP8266WebServer.h>
 #include "WiFiUtils.h"
+#include "EEPROMUtils.h"
 #include "config.h"
 
 /*
@@ -10,6 +11,7 @@
 // LED pin to indicate the network connection status
 const int WIFI_STATUS_LED = 2;
 
+// HTTP server instance
 ESP8266WebServer server(80);
 
 void setup()
@@ -17,6 +19,7 @@ void setup()
     Serial.begin(115200);
     pinMode(WIFI_STATUS_LED, OUTPUT);
 
+    beginEEPROM();
     connectToWifi(SSID, PASSWORD, IP, GATEWAY, SUBNET, WIFI_STATUS_LED);
 
     server.on("/status", handleStatus);
