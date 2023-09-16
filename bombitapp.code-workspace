@@ -26,7 +26,8 @@
       "utility": "cpp",
       "*.tcc": "cpp",
       "ranges": "cpp",
-      "string_view": "cpp"
+      "string_view": "cpp",
+      "istream": "cpp"
     },
   }
 }

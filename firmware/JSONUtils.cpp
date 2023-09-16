@@ -14,7 +14,7 @@ String formatError(String errorCode, String errorMessage)
     return output;
 }
 
-String formatStatus(uint16_t timeLimit, Output outputsData[], uint8_t outputsNumber)
+String formatStatus(uint16_t timeLimit, OutputData outputsData[], int outputsNumber)
 {
     StaticJsonDocument<768> doc;
     doc["time_limit"] = timeLimit;
