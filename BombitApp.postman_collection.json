@@ -325,63 +325,6 @@
 			]
 		},
 		{
-			"name": "Not found",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{BASE_URL}}/not-found",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"not-found"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Not found",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/not-found",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"not-found"
-							]
-						}
-					},
-					"status": "Not Found",
-					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Content-Length",
-							"value": "55"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=2000"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"error_code\": \"ERR_00\",\n    \"error_message\": \"URL not found\"\n}"
-				}
-			]
-		},
-		{
 			"name": "Clear history",
 			"request": {
 				"method": "GET",
@@ -573,7 +516,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{BASE_URL}}/change-time-limit?time_limit=3600",
+					"raw": "{{BASE_URL}}/change-time-limit?time_limit=60",
 					"host": [
 						"{{BASE_URL}}"
 					],
@@ -583,7 +526,7 @@
 					"query": [
 						{
 							"key": "time_limit",
-							"value": "3600"
+							"value": "60"
 						}
 					]
 				}
@@ -595,7 +538,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/change-time-limit?time_limit=3600",
+							"raw": "{{BASE_URL}}/change-time-limit?time_limit=60",
 							"host": [
 								"{{BASE_URL}}"
 							],
@@ -605,7 +548,7 @@
 							"query": [
 								{
 									"key": "time_limit",
-									"value": "3600"
+									"value": "60"
 								}
 							]
 						}
@@ -1017,6 +960,63 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"error_code\": \"ERR_03\",\n    \"error_message\": \"The selected output is not in forced stop state\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Not found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/not-found",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"not-found"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/not-found",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"not-found"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_code\": \"ERR_00\",\n    \"error_message\": \"URL not found\"\n}"
 				}
 			]
 		}

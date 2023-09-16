@@ -27,7 +27,10 @@
       "*.tcc": "cpp",
       "ranges": "cpp",
       "string_view": "cpp",
-      "istream": "cpp"
+      "istream": "cpp",
+      "chrono": "cpp",
+      "random": "cpp",
+      "limits": "cpp"
     },
   }
 }

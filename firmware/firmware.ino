@@ -14,8 +14,8 @@
 const int WIFI_STATUS_LED = 2;
 // Number of inputs connected to the device
 const int INPUTS_NUMBER = 2;
-// Default working time limit
-const uint16_t DEFAULT_TIME_LIMIT = 1800;
+// Default working time limit in minutes
+const uint16_t DEFAULT_TIME_LIMIT = 30;
 // Inputs pin numbers
 const int INPUTS_PINS[INPUTS_NUMBER] = {5, 14};
 // Outputs pin numbers
@@ -122,41 +122,6 @@ void loop()
     }
 }
 
-// Returns the current outputs status to the client, formatted as a JSON string
-void handleStatus()
-{
-    String response = formatStatus(timeLimit, outputsData, INPUTS_NUMBER);
-    server.send(200, "application/json", response);
-}
-
-// Clears the recorded history, mean time and run count for the specified input
-void handleClear()
-{
-    String input = server.arg("input");
-    server.send(200, "text/plain", "Clear device " + input + " history");
-}
-
-// Changes the working time limit for all the outputs
-void handleChangeLimit()
-{
-    String timeLimit = server.arg("time_limit");
-    server.send(200, "text/plain", "Change time limit to " + timeLimit);
-}
-
-// Resumes a given stopped output
-void handleResume()
-{
-    String output = server.arg("output");
-    server.send(200, "text/plain", "Resume stopped device " + output);
-}
-
-// Returns a not found message to the client, formatted as a JSON string
-void handleNotFound()
-{
-    String response = formatError(NOT_FOUND, "URL not found");
-    server.send(404, "application/json", response);
-}
-
 // Adds a value to the history array of a given input, removing the oldest one to keep the array size constant
 void addValueToHistory(uint16_t value, int inputNumber)
 {
@@ -172,4 +137,67 @@ void addValueToHistory(uint16_t value, int inputNumber)
     {
         outputsData[inputNumber].history[i] = newHistory[i];
     }
+}
+
+// Returns the current outputs status to the client, formatted as a JSON string
+void handleStatus()
+{
+    String response = formatStatus(timeLimit, outputsData, INPUTS_NUMBER);
+    server.send(200, "application/json", response);
+}
+
+// Clears the recorded history, mean time and run count for the specified input, validating the user input
+void handleClear()
+{
+    String param = server.arg("input");
+    char *end;
+    long input = strtol(param.c_str(), &end, 10);
+    if (param == "" || *end != '\0' || input > INPUTS_NUMBER - 1 || input < 0)
+    {
+        String response = formatError(INVALID_INPUT, "Invalid input number");
+        server.send(404, "application/json", response);
+    }
+    else
+    {
+        outputsData[input].meanTime = 0;
+        outputsData[input].runCount = 0;
+        int historyLength = sizeof(outputsData[input].history) / sizeof(uint16_t);
+        for (int i = 0; i < historyLength; i++)
+        {
+            outputsData[input].history[i] = 0;
+        }
+        server.send(200);
+    }
+}
+
+// Changes the working time limit for all the outputs, validating the user input
+void handleChangeLimit()
+{
+    String param = server.arg("time_limit");
+    char *end;
+    long _timeLimit = strtol(param.c_str(), &end, 10);
+    if (param == "" || *end != '\0' || _timeLimit > UINT16_MAX || _timeLimit <= 0)
+    {
+        String response = formatError(INVALID_TIME_LIMIT, "Invalid time value");
+        server.send(404, "application/json", response);
+    }
+    else
+    {
+        timeLimit = _timeLimit;
+        server.send(200);
+    }
+}
+
+// Resumes a given stopped output
+void handleResume()
+{
+    String output = server.arg("output");
+    server.send(200, "text/plain", "Resume stopped device " + output);
+}
+
+// Returns a not found message to the client, formatted as a JSON string
+void handleNotFound()
+{
+    String response = formatError(NOT_FOUND, "URL not found");
+    server.send(404, "application/json", response);
 }
