@@ -11,7 +11,9 @@
 */
 
 // LED pin to indicate the network connection status
-const int WIFI_STATUS_LED = 2;
+const int STATUS_LED = 13;
+// Duration of the status LED blinks
+const int LED_BLINK_TIME = 200;
 // Number of inputs connected to the device
 const int INPUTS_NUMBER = 2;
 // Default working time limit in minutes
@@ -44,6 +46,8 @@ const int HISTORY_ADDR = COUNT_ADDR + INPUTS_NUMBER;
 // State variables
 OutputData outputsData[INPUTS_NUMBER] = {};
 uint16_t timeLimit = DEFAULT_TIME_LIMIT;
+unsigned long lastLedTimestamp;
+bool isLedBlinking;
 
 // HTTP server instance
 ESP8266WebServer server(80);
@@ -51,7 +55,7 @@ ESP8266WebServer server(80);
 void setup()
 {
     // Initialize input and output pins
-    pinMode(WIFI_STATUS_LED, OUTPUT);
+    pinMode(STATUS_LED, OUTPUT);
     for (int pin : INPUTS_PINS)
     {
         pinMode(pin, INPUT_PULLUP);
@@ -65,7 +69,7 @@ void setup()
     // Initialize the serial communication, the EEPROM library, the WiFi connection and the output state variables
     Serial.begin(115200);
     beginEEPROM();
-    connectToWifi(SSID, PASSWORD, IP, GATEWAY, SUBNET, WIFI_STATUS_LED);
+    connectToWifi(SSID, PASSWORD, IP, GATEWAY, SUBNET, STATUS_LED);
     getSavedStateValues();
 
     // Set up all the server endpoints
@@ -83,6 +87,13 @@ void loop()
 {
     // Handle any incoming request, if exists
     server.handleClient();
+
+    // Turn on the status LED if the blink is finished
+    if ((millis() - lastLedTimestamp) > LED_BLINK_TIME && isLedBlinking == true)
+    {
+        digitalWrite(STATUS_LED, LOW);
+        isLedBlinking = false;
+    }
 
     // Loop over the given number of inputs, processing it's state
     for (int i = 0; i < INPUTS_NUMBER; i++)
@@ -180,6 +191,7 @@ void handleStatus()
 {
     String response = formatStatus(timeLimit, outputsData, INPUTS_NUMBER);
     server.send(200, "application/json", response);
+    blinkStatusLed();
 }
 
 // Clears the recorded history, mean time and run count for the specified input, validating the user input
@@ -206,6 +218,7 @@ void handleClear()
         writeArrayToEEPROM(HISTORY_ADDR + input * HISTORY_LENGTH, outputsData[input].history, sizeof(outputsData[input].history));
         server.send(200);
     }
+    blinkStatusLed();
 }
 
 // Changes the working time limit for all the outputs, validating the user input
@@ -225,6 +238,7 @@ void handleChangeLimit()
         writeToEEPROM(LIMIT_ADDR, timeLimit);
         server.send(200);
     }
+    blinkStatusLed();
 }
 
 // Resumes a given stopped output
@@ -248,6 +262,7 @@ void handleResume()
         outputsData[input].status = OFF;
         server.send(200);
     }
+    blinkStatusLed();
 }
 
 // Returns a not found message to the client, formatted as a JSON string
@@ -255,4 +270,13 @@ void handleNotFound()
 {
     String response = formatError(NOT_FOUND, "URL not found");
     server.send(404, "application/json", response);
+    blinkStatusLed();
+}
+
+// Set the status LED to blink, updating it's state variables
+void blinkStatusLed()
+{
+    digitalWrite(STATUS_LED, HIGH);
+    lastLedTimestamp = millis();
+    isLedBlinking = true;
 }
