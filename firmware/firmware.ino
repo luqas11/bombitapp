@@ -80,26 +80,37 @@ void loop()
     // Loop over the given number of inputs, processing it's state
     for (int i = 0; i < INPUTS_NUMBER; i++)
     {
-        // Read the input state and skip processing if debouncing
+        // Whenever the output is on, update the current timer and make a forced stop if necessary
+        if (outputsData[i].status == WORKING)
+        {
+            outputsData[i].currentTime = (millis() - outputsData[i].currentRunTimestamp) / 1000;
+            if (outputsData[i].currentTime > timeLimit * 60)
+            {
+                outputsData[i].status = STOPPED;
+                outputsData[i].currentTime = 0;
+                digitalWrite(OUTPUTS_PINS[i], HIGH);
+            }
+        }
+
+        // Read the input state
         bool reading = !digitalRead(INPUTS_PINS[i]);
         if (reading != outputsData[i].lastChange)
         {
             outputsData[i].lastChangeTimestamp = millis();
             outputsData[i].lastChange = reading;
         }
-        if ((millis() - outputsData[i].lastChangeTimestamp) < DEBOUNCE_TIME * 1000)
-        {
-            continue;
-        }
 
         // Take the reading as valid after the debounce is completed
-        outputsData[i].sensorStatus = reading;
+        if (((millis() - outputsData[i].lastChangeTimestamp) / 1000) > DEBOUNCE_TIME)
+        {
+            outputsData[i].sensorStatus = reading;
+        }
 
         // If the input is on, but the output is still off, turn on the output and save the timestamp
         if (outputsData[i].sensorStatus == true && outputsData[i].status == OFF)
         {
             outputsData[i].status = WORKING;
-            outputsData[i].currentRunTimestamp = millis() / 1000;
+            outputsData[i].currentRunTimestamp = millis();
             digitalWrite(OUTPUTS_PINS[i], LOW);
         }
 
@@ -112,12 +123,6 @@ void loop()
             addValueToHistory(outputsData[i].currentTime, i);
             outputsData[i].currentTime = 0;
             digitalWrite(OUTPUTS_PINS[i], HIGH);
-        }
-
-        // Whenever the output is on, update the current timer
-        if (outputsData[i].status == WORKING)
-        {
-            outputsData[i].currentTime = millis() / 1000 - outputsData[i].currentRunTimestamp;
         }
     }
 }
@@ -191,8 +196,24 @@ void handleChangeLimit()
 // Resumes a given stopped output
 void handleResume()
 {
-    String output = server.arg("output");
-    server.send(200, "text/plain", "Resume stopped device " + output);
+    String param = server.arg("output");
+    char *end;
+    long input = strtol(param.c_str(), &end, 10);
+    if (param == "" || *end != '\0' || input > INPUTS_NUMBER - 1 || input < 0)
+    {
+        String response = formatError(INVALID_OUTPUT, "Invalid output number");
+        server.send(404, "application/json", response);
+    }
+    else if (outputsData[input].status != STOPPED)
+    {
+        String response = formatError(INPUT_NOT_STOPPED, "The selected output is not in forced stop state");
+        server.send(404, "application/json", response);
+    }
+    else
+    {
+        outputsData[input].status = OFF;
+        server.send(200);
+    }
 }
 
 // Returns a not found message to the client, formatted as a JSON string
