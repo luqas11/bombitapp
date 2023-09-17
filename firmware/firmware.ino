@@ -162,7 +162,7 @@ void getSavedStateValues()
         outputsData[i].meanTime = readFromEEPROM(MEAN_ADDR + i);
         outputsData[i].runCount = readFromEEPROM(COUNT_ADDR + i);
         uint16_t savedHistory[HISTORY_LENGTH];
-        readArrayFromEEPROM(HISTORY_ADDR + i, savedHistory, sizeof(savedHistory));
+        readArrayFromEEPROM(HISTORY_ADDR + i * HISTORY_LENGTH, savedHistory, sizeof(savedHistory));
         for (int j = 0; j < HISTORY_LENGTH; ++j)
         {
             outputsData[i].history[j] = savedHistory[j];
