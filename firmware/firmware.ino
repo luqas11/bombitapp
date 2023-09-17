@@ -35,6 +35,12 @@ const String INVALID_INPUT = "ERR_02";
 const String INPUT_NOT_STOPPED = "ERR_03";
 const String INVALID_OUTPUT = "ERR_04";
 
+// Memory addresses
+const int LIMIT_ADDR = 0;
+const int MEAN_ADDR = LIMIT_ADDR + 1;
+const int COUNT_ADDR = MEAN_ADDR + INPUTS_NUMBER;
+const int HISTORY_ADDR = COUNT_ADDR + INPUTS_NUMBER;
+
 // State variables
 OutputData outputsData[INPUTS_NUMBER] = {};
 uint16_t timeLimit = DEFAULT_TIME_LIMIT;
@@ -56,10 +62,11 @@ void setup()
         digitalWrite(pin, HIGH);
     }
 
-    // Initialize the serial communication, the EEPROM library and the WiFi connection
+    // Initialize the serial communication, the EEPROM library, the WiFi connection and the output state variables
     Serial.begin(115200);
     beginEEPROM();
     connectToWifi(SSID, PASSWORD, IP, GATEWAY, SUBNET, WIFI_STATUS_LED);
+    getSavedStateValues();
 
     // Set up all the server endpoints
     server.on("/status", handleStatus);
@@ -123,6 +130,31 @@ void loop()
             addValueToHistory(outputsData[i].currentTime, i);
             outputsData[i].currentTime = 0;
             digitalWrite(OUTPUTS_PINS[i], HIGH);
+
+            writeToEEPROM(MEAN_ADDR + i, outputsData[i].meanTime);
+            writeToEEPROM(COUNT_ADDR + i, outputsData[i].runCount);
+            writeArrayToEEPROM(HISTORY_ADDR + i * HISTORY_LENGTH, outputsData[i].history, sizeof(outputsData[i].history));
+        }
+    }
+}
+
+// Get the values stored in the EEPROM and save them to the state variables
+void getSavedStateValues()
+{
+    uint16_t _timeLimit = readFromEEPROM(LIMIT_ADDR);
+    if (_timeLimit != 0)
+    {
+        timeLimit = _timeLimit;
+    }
+    for (int i = 0; i < INPUTS_NUMBER; i++)
+    {
+        outputsData[i].meanTime = readFromEEPROM(MEAN_ADDR + i);
+        outputsData[i].runCount = readFromEEPROM(COUNT_ADDR + i);
+        uint16_t savedHistory[HISTORY_LENGTH];
+        readArrayFromEEPROM(HISTORY_ADDR + i, savedHistory, sizeof(savedHistory));
+        for (int j = 0; j < HISTORY_LENGTH; ++j)
+        {
+            outputsData[i].history[j] = savedHistory[j];
         }
     }
 }
@@ -130,15 +162,14 @@ void loop()
 // Adds a value to the history array of a given input, removing the oldest one to keep the array size constant
 void addValueToHistory(uint16_t value, int inputNumber)
 {
-    int historyLength = sizeof(outputsData[inputNumber].history) / sizeof(uint16_t);
-    uint16_t newHistory[historyLength];
+    uint16_t newHistory[HISTORY_LENGTH];
     newHistory[0] = value;
 
-    for (int i = 0; i < historyLength - 1; i++)
+    for (int i = 0; i < HISTORY_LENGTH - 1; i++)
     {
         newHistory[i + 1] = outputsData[inputNumber].history[i];
     }
-    for (int i = 0; i < historyLength; ++i)
+    for (int i = 0; i < HISTORY_LENGTH; ++i)
     {
         outputsData[inputNumber].history[i] = newHistory[i];
     }
@@ -166,11 +197,13 @@ void handleClear()
     {
         outputsData[input].meanTime = 0;
         outputsData[input].runCount = 0;
-        int historyLength = sizeof(outputsData[input].history) / sizeof(uint16_t);
-        for (int i = 0; i < historyLength; i++)
+        for (int i = 0; i < HISTORY_LENGTH; i++)
         {
             outputsData[input].history[i] = 0;
         }
+        writeToEEPROM(MEAN_ADDR + input, 0);
+        writeToEEPROM(COUNT_ADDR + input, 0);
+        writeArrayToEEPROM(HISTORY_ADDR + input * HISTORY_LENGTH, outputsData[input].history, sizeof(outputsData[input].history));
         server.send(200);
     }
 }
@@ -189,6 +222,7 @@ void handleChangeLimit()
     else
     {
         timeLimit = _timeLimit;
+        writeToEEPROM(LIMIT_ADDR, timeLimit);
         server.send(200);
     }
 }
