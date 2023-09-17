@@ -88,6 +88,12 @@ void loop()
     // Handle any incoming request, if exists
     server.handleClient();
 
+    // Set the LED state depending on the network status
+    if (isLedBlinking != true)
+    {
+        digitalWrite(STATUS_LED, isWiFiConnected() ? LOW : HIGH);
+    }
+
     // Turn on the status LED if the blink is finished
     if ((millis() - lastLedTimestamp) > LED_BLINK_TIME && isLedBlinking == true)
     {

@@ -1,6 +1,11 @@
 #include <ESP8266WiFi.h>
 #include "WiFiUtils.h"
 
+bool isWiFiConnected()
+{
+    return WiFi.status() == WL_CONNECTED;
+}
+
 void connectToWifi(String ssid, String password, String ip, String gateway, String subnet, int ledPin)
 {
     IPAddress _ip;
