@@ -58,7 +58,7 @@ void setup()
     pinMode(STATUS_LED, OUTPUT);
     for (int pin : INPUTS_PINS)
     {
-        pinMode(pin, INPUT_PULLUP);
+        pinMode(pin, INPUT);
     }
     for (int pin : OUTPUTS_PINS)
     {
