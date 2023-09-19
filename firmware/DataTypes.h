@@ -3,7 +3,7 @@
 
 #include "Arduino.h"
 
-// Length of the run time history array
+// Length of the run time history array.
 const int HISTORY_LENGTH = 10;
 // Structure that holds the data related to a device.
 struct DeviceData

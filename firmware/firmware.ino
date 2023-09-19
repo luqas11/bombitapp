@@ -65,7 +65,7 @@ void setup()
         digitalWrite(pin, HIGH);
     }
 
-    // Initialize the serial communication, the EEPROM library, the WiFi connection and the device state variables
+    // Initialize the serial communication, the EEPROM library, the WiFi connection and the devices state variables
     Serial.begin(115200);
     beginEEPROM();
     connectToWifi(SSID, PASSWORD, IP, GATEWAY, SUBNET, STATUS_LED);
