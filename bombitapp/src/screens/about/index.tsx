@@ -12,7 +12,7 @@ const AboutScreen = () => {
   const historyEntries = [
     {
       title: 'Versión 5.0.0',
-      date: '4-6-2023',
+      date: '19-9-2023',
       content: '- Reescritura de la app en TypeScript',
     },
     {

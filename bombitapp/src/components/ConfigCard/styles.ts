@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   statusOn: {
     borderColor: 'green',
   },
-  statusStop: {
+  statusStopped: {
     borderColor: 'red',
   },
 });

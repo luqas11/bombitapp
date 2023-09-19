@@ -20,24 +20,24 @@ const DashboardScreen = () => {
     <View style={styles.container}>
       <StatusCard
         name={devicesNames?.[0]}
-        currentTime={currentStatus?.outputs[0].current_time}
-        meanTime={currentStatus?.outputs[0].mean_time}
-        runs={currentStatus?.outputs[0].run_count}
-        status={currentStatus?.outputs[0].status}
-        sensorStatus={currentStatus?.outputs[0].sensor_status}
+        currentTime={currentStatus?.devices[0].current_time}
+        meanTime={currentStatus?.devices[0].mean_time}
+        runs={currentStatus?.devices[0].run_count}
+        status={currentStatus?.devices[0].status}
+        sensorStatus={currentStatus?.devices[0].input_status}
         historyOnPress={() =>
-          modal.showHistoryModal({entries: currentStatus?.outputs[0].history})
+          modal.showHistoryModal({entries: currentStatus?.devices[0].history})
         }
       />
       <StatusCard
         name={devicesNames?.[1]}
-        currentTime={currentStatus?.outputs[1].current_time}
-        meanTime={currentStatus?.outputs[1].mean_time}
-        runs={currentStatus?.outputs[1].run_count}
-        status={currentStatus?.outputs[1].status}
-        sensorStatus={currentStatus?.outputs[1].sensor_status}
+        currentTime={currentStatus?.devices[1].current_time}
+        meanTime={currentStatus?.devices[1].mean_time}
+        runs={currentStatus?.devices[1].run_count}
+        status={currentStatus?.devices[1].status}
+        sensorStatus={currentStatus?.devices[1].input_status}
         historyOnPress={() =>
-          modal.showHistoryModal({entries: currentStatus?.outputs[1].history})
+          modal.showHistoryModal({entries: currentStatus?.devices[1].history})
         }
       />
       <View style={styles.indicatorContainer}>

@@ -22,7 +22,7 @@ const TimeLimitCard = ({setDeviceTimeLimit, timeLimit}: TimeLimitCardProps) => {
       <View>
         <Text style={styles.title}>{'Tiempo límite: '}</Text>
         <Text style={styles.value}>
-          {timeLimit !== undefined ? Math.round(timeLimit / 60) + ' min' : '-'}
+          {timeLimit !== undefined ? timeLimit + ' min' : '-'}
         </Text>
       </View>
       <ButtonWithIcon

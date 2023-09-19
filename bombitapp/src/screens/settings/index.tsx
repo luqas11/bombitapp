@@ -9,12 +9,12 @@ import {
 } from '../../components';
 import {useModalContext} from '../../context';
 import {useStore} from '../../state';
-import {changeTimeLimit, clearHistory, resumeOutput} from '../../helpers';
+import {changeTimeLimit, clearHistory, resume} from '../../helpers';
 import {DEVICE_NAME_PREFIX} from '../../constants';
 import {styles} from './styles';
 
 /**
- * Device settings screen with some options to set device parameters.
+ * Device settings screen with some options to set devices parameters.
  * @returns a screen component
  */
 const SettingsScreen = () => {
@@ -25,15 +25,15 @@ const SettingsScreen = () => {
   const setDeviceName = useStore(state => state.setDeviceName);
 
   /**
-   * Shows a modal sequence to set and confirm an input renaming. Shows wheter the API call was successful or not.
-   * @param deviceId id of the input to rename
+   * Shows a modal sequence to set and confirm a device renaming. Shows wheter the API call was successful or not.
+   * @param deviceId id of the device to rename
    */
   const renameDevice = (deviceId: number) => {
     modal.showConfirmationModal({
       title: 'Renombrar dispositivo',
-      text: 'Ingresá el nombre con el que se va a mostrar esta entrada.',
+      text: 'Ingresá el nombre con el que se va a mostrar esta dispositivo.',
       textInputConfig: {
-        placeholder: 'Nombre de la entrada',
+        placeholder: 'Nombre del dispositivo',
         validation: value => Boolean(value),
       },
       acceptCallback: async value => {
@@ -42,13 +42,13 @@ const SettingsScreen = () => {
       },
       successCallback: () => {
         modal.showInformationModal({
-          text: 'El nombre de la entrada se modificó con éxito.',
+          text: 'El nombre del dispositivo se modificó con éxito.',
           type: 'SUCCESS',
         });
       },
       errorCallback: () => {
         modal.showInformationModal({
-          text: 'La app no pudo modificar el nombre de la entrada.',
+          text: 'La app no pudo modificar el nombre del dispositivo.',
           type: 'ERROR',
         });
       },
@@ -56,15 +56,15 @@ const SettingsScreen = () => {
   };
 
   /**
-   * Shows a modal sequence to confirm the resuming of a stopped input. Shows whether the API call was successful or not.
-   * @param deviceId id of the input to resume
+   * Shows a modal sequence to confirm the resuming of a stopped device. Shows whether the API call was successful or not.
+   * @param deviceId id of the device to resume
    */
   const resumeDevice = (deviceId: number) => {
     modal.showConfirmationModal({
       title: 'Reanudar funcionamiento',
-      text: 'La salida seleccionada va a reanudar su funcionamiento.',
+      text: 'El dispositivo seleccionado va a reanudar su funcionamiento.',
       acceptCallback: async () => {
-        await resumeOutput(deviceId);
+        await resume(deviceId);
       },
       successCallback: () => {
         modal.showInformationModal({
@@ -76,7 +76,7 @@ const SettingsScreen = () => {
         modal.showInformationModal({
           text: error?.error_code
             ? 'El dispositivo no pudo reanudar su funcionamiento.'
-            : 'La app no pudo conectarse al dispositivo.',
+            : 'La app no pudo conectarse al sistema.',
           type: 'ERROR',
         });
       },
@@ -84,27 +84,27 @@ const SettingsScreen = () => {
   };
 
   /**
-   * Shows a modal sequence to confirm the record deletion of an input. Shows whether the API call was successful or not.
-   * @param deviceId id of the input whose records will be deleted
+   * Shows a modal sequence to confirm the record and history deletion of a device. Shows whether the API call was successful or not.
+   * @param deviceId id of the device whose records and history will be deleted
    */
   const deleteDeviceData = (deviceId: number) => {
     modal.showConfirmationModal({
       title: 'Borrar registros',
-      text: 'Se van a borrar TODOS los registros, incluyendo historial, promedio y cantidad de arranques.',
+      text: 'Se van a borrar TODOS los registros del dispositivo seleccionado, incluyendo historial, promedio y cantidad de arranques.',
       acceptCallback: async () => {
         await clearHistory(deviceId);
       },
       successCallback: () => {
         modal.showInformationModal({
-          text: 'Los registros de la entrada seleccionada fueron eliminados.',
+          text: 'Los registros del dispositivo seleccionado fueron eliminados.',
           type: 'SUCCESS',
         });
       },
       errorCallback: error => {
         modal.showInformationModal({
           text: error?.error_code
-            ? 'El dispositivo no pudo borrar los registros de la entrada seleccionada.'
-            : 'La app no pudo conectarse al dispositivo.',
+            ? 'El sistema no pudo borrar los registros del dispositivo seleccionado.'
+            : 'La app no pudo conectarse al sistema.',
           type: 'ERROR',
         });
       },
@@ -112,12 +112,12 @@ const SettingsScreen = () => {
   };
 
   /**
-   * Shows a modal sequence to set and confirm the inputs working time limit. Shows wheter the API call was successful or not.
+   * Shows a modal sequence to set and confirm the device running time limit. Shows whether the API call was successful or not.
    */
   const setDeviceTimeLimit = () => {
     modal.showConfirmationModal({
       title: 'Modificar tiempo límite',
-      text: 'Ingresá el tiempo límite (en minutos) hasta el que van a funcionar las entradas hasta aplicar el corte automático.',
+      text: 'Ingresá el tiempo límite (en minutos) hasta el que van a funcionar los dispositivos hasta aplicar el corte automático.',
       textInputConfig: {
         placeholder: 'Tiempo límite',
         keyboardType: 'numeric',
@@ -128,15 +128,15 @@ const SettingsScreen = () => {
       },
       successCallback: () => {
         modal.showInformationModal({
-          text: 'El dispositivo configuró el tiempo límite de funcionamiento correctamente.',
+          text: 'El sistema configuró el tiempo límite de funcionamiento correctamente.',
           type: 'SUCCESS',
         });
       },
       errorCallback: error => {
         modal.showInformationModal({
           text: error?.error_code
-            ? 'El dispositivo no pudo configurar el tiempo límite de funcionamiento.'
-            : 'La app no pudo conectarse al dispositivo.',
+            ? 'El sistema no pudo configurar el tiempo límite de funcionamiento.'
+            : 'La app no pudo conectarse al sistema.',
           type: 'ERROR',
         });
       },
@@ -150,14 +150,14 @@ const SettingsScreen = () => {
         renameDevice={() => renameDevice(0)}
         resumeDevice={() => resumeDevice(0)}
         deleteDeviceData={() => deleteDeviceData(0)}
-        status={currentStatus?.outputs[0].status}
+        status={currentStatus?.devices[0].status}
       />
       <ConfigCard
         title={devicesNames?.[1]}
         renameDevice={() => renameDevice(1)}
         resumeDevice={() => resumeDevice(1)}
         deleteDeviceData={() => deleteDeviceData(1)}
-        status={currentStatus?.outputs[1].status}
+        status={currentStatus?.devices[1].status}
       />
       <TimeLimitCard
         setDeviceTimeLimit={setDeviceTimeLimit}

@@ -39,8 +39,7 @@ const StatusCard = ({
   const statusStyles = [
     styles.statusOff,
     styles.statusOn,
-    styles.statusOn,
-    styles.statusStop,
+    styles.statusStopped,
   ];
 
   return (
@@ -63,7 +62,7 @@ const StatusCard = ({
             <Text style={styles.recordValue}>{runs ?? '-'}</Text>
           </View>
         </View>
-        {status === 3 && (
+        {status === 2 && (
           <Text style={sensorStatus ? styles.sensorOn : styles.sensorOff}>
             {'Automático ' + (sensorStatus ? 'ENCENDIDO' : 'APAGADO')}
           </Text>

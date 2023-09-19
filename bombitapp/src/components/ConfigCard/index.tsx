@@ -33,8 +33,7 @@ const ConfigCard = ({
   const statusStyles = [
     styles.statusOff,
     styles.statusOn,
-    styles.statusOn,
-    styles.statusStop,
+    styles.statusStopped,
   ];
 
   return (
@@ -53,7 +52,7 @@ const ConfigCard = ({
           iconConfig={{name: 'arrow-up-circle', size: 40}}
           text="Reanudar"
           onPress={resumeDevice}
-          disabled={status !== 3}
+          disabled={status !== 2}
         />
         <ButtonWithIcon
           customStyles={{container: styles.button}}

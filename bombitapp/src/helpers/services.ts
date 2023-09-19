@@ -3,22 +3,22 @@ import Config from 'react-native-config';
 
 import {REQUEST_TIMEOUT} from '../constants';
 
-export type DeviceStatuses = 0 | 1 | 2 | 3;
+export type DeviceStatuses = 0 | 1 | 2;
 
-export type DeviceData = {
+export type SystemData = {
   time_limit: number;
-  outputs: {
+  devices: {
     status: DeviceStatuses;
     current_time: number;
     mean_time: number;
     run_count: number;
-    sensor_status: boolean;
+    input_status: boolean;
     history: number[];
   }[];
 };
 
 type Response = {
-  data: DeviceData;
+  data: SystemData;
 };
 
 export type ErrorResponse = {error_code: string; error_message: string};
@@ -61,11 +61,11 @@ export const getStatus = async () => {
  * @param deviceId id of the device to be cleared
  */
 export const clearHistory = async (deviceId: number) => {
-  await axiosInstance.get('/clear-history', {params: {input: deviceId}});
+  await axiosInstance.get('/clear-history', {params: {device: deviceId}});
 };
 
 /**
- * Change the working time limit for the device outputs
+ * Change the working time limit for the devices
  * @param timeLimit time to be set as the new limit
  */
 export const changeTimeLimit = async (timeLimit: string) => {
@@ -75,11 +75,11 @@ export const changeTimeLimit = async (timeLimit: string) => {
 };
 
 /**
- * Resumes an output stopped for exceeding the time limit
- * @param deviceId id of the output to be resumed
+ * Resumes a device stopped for exceeding the time limit
+ * @param deviceId id of the device to be resumed
  */
-export const resumeOutput = async (deviceId: number) => {
-  await axiosInstance.get('/resume-output', {
-    params: {output: deviceId},
+export const resume = async (deviceId: number) => {
+  await axiosInstance.get('/resume', {
+    params: {device: deviceId},
   });
 };

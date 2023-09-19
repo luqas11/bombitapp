@@ -1,10 +1,10 @@
 import {create} from 'zustand';
-import {DeviceData, getStatus} from '../helpers';
+import {SystemData, getStatus} from '../helpers';
 import {RequestStatuses} from '../components/RequestStatusIndicator';
 
-interface InputState {
+interface DeviceState {
   names: string[] | undefined;
-  status: DeviceData | undefined;
+  status: SystemData | undefined;
   requestStatus: RequestStatuses;
   fetchStatus: () => Promise<void>;
   setRequestStatus: (value: RequestStatuses) => void;
@@ -12,7 +12,7 @@ interface InputState {
   setDeviceName: (value: string, id: number) => void;
 }
 
-export const useStore = create<InputState>((set, get) => ({
+export const useStore = create<DeviceState>((set, get) => ({
   names: undefined,
   status: undefined,
   requestStatus: RequestStatuses.NO_DATA,

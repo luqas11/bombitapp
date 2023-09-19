@@ -24,7 +24,7 @@ type ButtonWithIconProps = {
 /**
  * Button with an icon and a label.
  * @param props component props
- *   @param props.text label text. If undefined, Text component won't be rendered
+ *   @param props.text label text. If undefined, Text component won't be rendered.
  *   @param props.customStyles button custom styles object
  *     @param props.customStyles.container button container custom styles
  *     @param props.customStyles.text button text custom styles
