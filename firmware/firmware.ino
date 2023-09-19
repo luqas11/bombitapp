@@ -75,7 +75,7 @@ void setup()
     server.on("/status", handleStatus);
     server.on("/clear-history", handleClear);
     server.on("/change-time-limit", handleChangeLimit);
-    server.on("/resume-output", handleResume);
+    server.on("/resume", handleResume);
     server.onNotFound(handleNotFound);
 
     // Initialize the HTTP server

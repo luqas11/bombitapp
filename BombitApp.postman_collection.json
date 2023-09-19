@@ -414,12 +414,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{BASE_URL}}/resume-output?device=0",
+					"raw": "{{BASE_URL}}/resume?device=0",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"resume-output"
+						"resume"
 					],
 					"query": [
 						{
@@ -436,12 +436,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/resume-output?device=0",
+							"raw": "{{BASE_URL}}/resume?device=0",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"resume-output"
+								"resume"
 							],
 							"query": [
 								{
@@ -481,12 +481,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/resume-output?device=0",
+							"raw": "{{BASE_URL}}/resume?device=0",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"resume-output"
+								"resume"
 							],
 							"query": [
 								{
@@ -526,12 +526,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/resume-output?device=-1",
+							"raw": "{{BASE_URL}}/resume?device=-1",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"resume-output"
+								"resume"
 							],
 							"query": [
 								{
