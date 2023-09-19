@@ -409,7 +409,7 @@
 			]
 		},
 		{
-			"name": "Resume output",
+			"name": "Resume",
 			"request": {
 				"method": "GET",
 				"header": [],
