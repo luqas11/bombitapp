@@ -14,9 +14,9 @@
 const int STATUS_LED = 13;
 // Duration of the status LED blinks
 const int LED_BLINK_TIME = 200;
-// Number of devices connected to the device
+// Number of devices connected to the system
 const int DEVICES_NUMBER = 2;
-// Default working time limit in minutes
+// Default running time limit in minutes
 const uint16_t DEFAULT_TIME_LIMIT = 30;
 // Inputs pin numbers
 const int INPUTS_PINS[DEVICES_NUMBER] = {5, 14};
@@ -103,7 +103,7 @@ void loop()
     // Loop over the given number of devices, processing it's state
     for (int i = 0; i < DEVICES_NUMBER; i++)
     {
-        // Whenever the device is running, update the current timer and make a forced stop if necessary
+        // Whenever the device is running, update the current timer and make a forced stop if time limit is exceeded
         if (devicesData[i].status == RUNNING)
         {
             devicesData[i].currentTime = (millis() - devicesData[i].currentRunTimestamp) / 1000;
@@ -115,7 +115,7 @@ void loop()
             }
         }
 
-        // Read the input state
+        // Read the input state and save the debounce timestamp
         bool reading = !digitalRead(INPUTS_PINS[i]);
         if (reading != devicesData[i].lastChange)
         {
@@ -129,7 +129,7 @@ void loop()
             devicesData[i].inputStatus = reading;
         }
 
-        // If the input is on, but the output is device off, turn on the device and save the timestamp
+        // If the input is on, but the device is still off, turn on the device and save the timestamp
         if (devicesData[i].inputStatus == true && devicesData[i].status == OFF)
         {
             devicesData[i].status = RUNNING;
@@ -154,7 +154,7 @@ void loop()
     }
 }
 
-// Get the values stored in the EEPROM and save them to the state variables
+// Read the values stored in the EEPROM and save them to the state variables
 void getSavedStateValues()
 {
     uint16_t _timeLimit = readFromEEPROM(LIMIT_ADDR);
@@ -175,7 +175,7 @@ void getSavedStateValues()
     }
 }
 
-// Adds a value to the history array of a given device, removing the oldest one to keep the array size constant
+// Adds a value to the history array of a given device, removing the oldest one to keep a constant array size
 void addValueToHistory(uint16_t value, int deviceNumber)
 {
     uint16_t newHistory[HISTORY_LENGTH];
@@ -226,7 +226,7 @@ void handleClear()
     blinkStatusLed();
 }
 
-// Changes the working time limit for all the devices, validating the user input
+// Changes the running time limit for all the devices, validating the user input
 void handleChangeLimit()
 {
     String time_limit = server.arg("time_limit");
