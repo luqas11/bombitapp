@@ -4,39 +4,39 @@
 
 String formatError(String errorCode, String errorMessage)
 {
-    String output;
+    String response;
     StaticJsonDocument<128> doc;
 
     doc["error_code"] = errorCode;
     doc["error_message"] = errorMessage;
 
-    serializeJson(doc, output);
-    return output;
+    serializeJson(doc, response);
+    return response;
 }
 
-String formatStatus(uint16_t timeLimit, OutputData outputsData[], int outputsNumber)
+String formatStatus(uint16_t timeLimit, DeviceData devicesData[], int devicesNumber)
 {
     StaticJsonDocument<768> doc;
     doc["time_limit"] = timeLimit;
-    JsonArray outputs = doc.createNestedArray("outputs");
+    JsonArray devices = doc.createNestedArray("devices");
 
-    for (int i = 0; i < outputsNumber; i++)
+    for (int i = 0; i < devicesNumber; i++)
     {
-        JsonObject output = outputs.createNestedObject();
-        output["status"] = outputsData[i].status;
-        output["current_time"] = outputsData[i].currentTime;
-        output["mean_time"] = outputsData[i].meanTime;
-        output["run_count"] = outputsData[i].runCount;
-        output["sensor_status"] = outputsData[i].sensorStatus;
+        JsonObject device = devices.createNestedObject();
+        device["status"] = devicesData[i].status;
+        device["current_time"] = devicesData[i].currentTime;
+        device["mean_time"] = devicesData[i].meanTime;
+        device["run_count"] = devicesData[i].runCount;
+        device["input_status"] = devicesData[i].inputStatus;
 
-        JsonArray output_history = output.createNestedArray("history");
-        for (int j = 0; j < sizeof(outputsData[i].history) / sizeof(uint16_t); j++)
+        JsonArray device_history = device.createNestedArray("history");
+        for (int j = 0; j < sizeof(devicesData[i].history) / sizeof(uint16_t); j++)
         {
-            output_history.add(outputsData[i].history[j]);
+            device_history.add(devicesData[i].history[j]);
         }
     }
 
-    String outputString;
-    serializeJson(doc, outputString);
-    return outputString;
+    String response;
+    serializeJson(doc, response);
+    return response;
 }

@@ -23,7 +23,7 @@
 			},
 			"response": [
 				{
-					"name": "Output running",
+					"name": "Device off",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -42,48 +42,12 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin, Accept-Encoding"
-						},
-						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": "true"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "-1"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Content-Length",
-							"value": "604"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"25c-E2/umyp2LQrvXsxl2vl0yJX6fz0\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 14 May 2023 05:15:22 GMT"
+							"value": "265"
 						},
 						{
 							"key": "Connection",
@@ -91,14 +55,14 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"value": "timeout=2000"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"time_limit\": 3600,\n    \"outputs\": [\n        {\n            \"status\": 2,\n            \"current_time\": 53,\n            \"mean_time\": 61,\n            \"run_count\": 1,\n            \"sensor_status\": true,\n            \"history\": [\n                61,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        },\n        {\n            \"status\": 0,\n            \"current_time\": 150,\n            \"mean_time\": 554,\n            \"run_count\": 10,\n            \"sensor_status\": false,\n            \"history\": [\n                549,\n                516,\n                543,\n                509,\n                544,\n                534,\n                610,\n                677,\n                539,\n                539\n            ]\n        }\n    ]\n}"
+					"body": "{\n    \"time_limit\": 60,\n    \"devices\": [\n        {\n            \"status\": 0,\n            \"current_time\": 0,\n            \"mean_time\": 25,\n            \"run_count\": 10,\n            \"input_status\": false,\n            \"history\": [\n                34,\n                9,\n                9,\n                25,\n                30,\n                16,\n                19,\n                29,\n                54,\n                57\n            ]\n        },\n        {\n            \"status\": 0,\n            \"current_time\": 0,\n            \"mean_time\": 50,\n            \"run_count\": 3,\n            \"input_status\": false,\n            \"history\": [\n                28,\n                42,\n                81,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        }\n    ]\n}"
 				},
 				{
-					"name": "Output stopped",
+					"name": "Device running",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -117,48 +81,12 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin, Accept-Encoding"
-						},
-						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": "true"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "-1"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Content-Length",
-							"value": "604"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"25c-E2/umyp2LQrvXsxl2vl0yJX6fz0\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 14 May 2023 05:15:22 GMT"
+							"value": "265"
 						},
 						{
 							"key": "Connection",
@@ -166,14 +94,14 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"value": "timeout=2000"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"time_limit\": 3600,\n    \"outputs\": [\n        {\n            \"status\": 0,\n            \"current_time\": 0,\n            \"mean_time\": 61,\n            \"run_count\": 1,\n            \"sensor_status\": false,\n            \"history\": [\n                61,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        },\n        {\n            \"status\": 0,\n            \"current_time\": 150,\n            \"mean_time\": 554,\n            \"run_count\": 10,\n            \"sensor_status\": false,\n            \"history\": [\n                549,\n                516,\n                543,\n                509,\n                544,\n                534,\n                610,\n                677,\n                539,\n                539\n            ]\n        }\n    ]\n}"
+					"body": "{\n    \"time_limit\": 60,\n    \"devices\": [\n        {\n            \"status\": 1,\n            \"current_time\": 27,\n            \"mean_time\": 25,\n            \"run_count\": 10,\n            \"input_status\": true,\n            \"history\": [\n                34,\n                9,\n                9,\n                25,\n                30,\n                16,\n                19,\n                29,\n                54,\n                57\n            ]\n        },\n        {\n            \"status\": 0,\n            \"current_time\": 0,\n            \"mean_time\": 50,\n            \"run_count\": 3,\n            \"input_status\": false,\n            \"history\": [\n                28,\n                42,\n                81,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        }\n    ]\n}"
 				},
 				{
-					"name": "Output stopped for time limit exceeded (with sensor off)",
+					"name": "Device stopped for exceeding time limit (with sensor on)",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -192,48 +120,12 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin, Accept-Encoding"
-						},
-						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": "true"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "-1"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Content-Length",
-							"value": "604"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"25c-E2/umyp2LQrvXsxl2vl0yJX6fz0\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 14 May 2023 05:15:22 GMT"
+							"value": "263"
 						},
 						{
 							"key": "Connection",
@@ -241,14 +133,14 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"value": "timeout=2000"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"time_limit\": 3600,\n    \"outputs\": [\n        {\n            \"status\": 3,\n            \"current_time\": 0,\n            \"mean_time\": 61,\n            \"run_count\": 1,\n            \"sensor_status\": false,\n            \"history\": [\n                61,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        },\n        {\n            \"status\": 0,\n            \"current_time\": 150,\n            \"mean_time\": 554,\n            \"run_count\": 10,\n            \"sensor_status\": false,\n            \"history\": [\n                549,\n                516,\n                543,\n                509,\n                544,\n                534,\n                610,\n                677,\n                539,\n                539\n            ]\n        }\n    ]\n}"
+					"body": "{\n    \"time_limit\": 1,\n    \"devices\": [\n        {\n            \"status\": 2,\n            \"current_time\": 0,\n            \"mean_time\": 25,\n            \"run_count\": 10,\n            \"input_status\": true,\n            \"history\": [\n                34,\n                9,\n                9,\n                25,\n                30,\n                16,\n                19,\n                29,\n                54,\n                57\n            ]\n        },\n        {\n            \"status\": 0,\n            \"current_time\": 0,\n            \"mean_time\": 50,\n            \"run_count\": 3,\n            \"input_status\": false,\n            \"history\": [\n                28,\n                42,\n                81,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        }\n    ]\n}"
 				},
 				{
-					"name": "Output stopped for time limit exceeded (with sensor on)",
+					"name": "Device stopped for exceeding time limit (with sensor off)",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -267,48 +159,12 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin, Accept-Encoding"
-						},
-						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": "true"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "-1"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Content-Length",
-							"value": "604"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"25c-E2/umyp2LQrvXsxl2vl0yJX6fz0\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 14 May 2023 05:15:22 GMT"
+							"value": "264"
 						},
 						{
 							"key": "Connection",
@@ -316,11 +172,11 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"value": "timeout=2000"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"time_limit\": 3600,\n    \"outputs\": [\n        {\n            \"status\": 3,\n            \"current_time\": 0,\n            \"mean_time\": 61,\n            \"run_count\": 1,\n            \"sensor_status\": true,\n            \"history\": [\n                61,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        },\n        {\n            \"status\": 0,\n            \"current_time\": 150,\n            \"mean_time\": 554,\n            \"run_count\": 10,\n            \"sensor_status\": false,\n            \"history\": [\n                549,\n                516,\n                543,\n                509,\n                544,\n                534,\n                610,\n                677,\n                539,\n                539\n            ]\n        }\n    ]\n}"
+					"body": "{\n    \"time_limit\": 1,\n    \"devices\": [\n        {\n            \"status\": 2,\n            \"current_time\": 0,\n            \"mean_time\": 25,\n            \"run_count\": 10,\n            \"input_status\": false,\n            \"history\": [\n                34,\n                9,\n                9,\n                25,\n                30,\n                16,\n                19,\n                29,\n                54,\n                57\n            ]\n        },\n        {\n            \"status\": 0,\n            \"current_time\": 0,\n            \"mean_time\": 50,\n            \"run_count\": 3,\n            \"input_status\": false,\n            \"history\": [\n                28,\n                42,\n                81,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0,\n                0\n            ]\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -330,7 +186,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{BASE_URL}}/clear-history?input=0",
+					"raw": "{{BASE_URL}}/clear-history?device=0",
 					"host": [
 						"{{BASE_URL}}"
 					],
@@ -339,7 +195,7 @@
 					],
 					"query": [
 						{
-							"key": "input",
+							"key": "device",
 							"value": "0"
 						}
 					]
@@ -352,7 +208,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/clear-history?input=0",
+							"raw": "{{BASE_URL}}/clear-history?device=0",
 							"host": [
 								"{{BASE_URL}}"
 							],
@@ -361,7 +217,7 @@
 							],
 							"query": [
 								{
-									"key": "input",
+									"key": "device",
 									"value": "0"
 								}
 							]
@@ -369,51 +225,15 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "json",
+					"_postman_previewlanguage": "plain",
 					"header": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin, Accept-Encoding"
-						},
-						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": "true"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "-1"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
+							"value": ""
 						},
 						{
 							"key": "Content-Length",
-							"value": "2"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 14 May 2023 05:18:20 GMT"
+							"value": "0"
 						},
 						{
 							"key": "Connection",
@@ -421,19 +241,19 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"value": "timeout=2000"
 						}
 					],
 					"cookie": [],
-					"body": "{}"
+					"body": null
 				},
 				{
-					"name": "Invalid input number",
+					"name": "Invalid device number",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/clear-history?input=10",
+							"raw": "{{BASE_URL}}/clear-history?device=-1",
 							"host": [
 								"{{BASE_URL}}"
 							],
@@ -442,59 +262,23 @@
 							],
 							"query": [
 								{
-									"key": "input",
-									"value": "10"
+									"key": "device",
+									"value": "-1"
 								}
 							]
 						}
 					},
-					"status": "Bad Request",
-					"code": 400,
+					"status": "Not Found",
+					"code": 404,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin, Accept-Encoding"
-						},
-						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": "true"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "-1"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Content-Length",
-							"value": "71"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"47-/FEll3U6cMKIGKY3yNNN4FNr9jk\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 14 May 2023 05:19:03 GMT"
+							"value": "63"
 						},
 						{
 							"key": "Connection",
@@ -502,11 +286,11 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"value": "timeout=2000"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"error_code\": \"ERR_02\",\n    \"error_message\": \"Invalid input number\"\n}"
+					"body": "{\n    \"error_code\": \"ERR_02\",\n    \"error_message\": \"Invalid device number\"\n}"
 				}
 			]
 		},
@@ -555,51 +339,15 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "json",
+					"_postman_previewlanguage": "plain",
 					"header": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin, Accept-Encoding"
-						},
-						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": "true"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "-1"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
+							"value": ""
 						},
 						{
 							"key": "Content-Length",
-							"value": "2"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 14 May 2023 05:19:34 GMT"
+							"value": "0"
 						},
 						{
 							"key": "Connection",
@@ -607,11 +355,11 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"value": "timeout=2000"
 						}
 					],
 					"cookie": [],
-					"body": "{}"
+					"body": null
 				},
 				{
 					"name": "Invalid time value",
@@ -619,7 +367,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/change-time-limit?time_limit=-10",
+							"raw": "{{BASE_URL}}/change-time-limit?time_limit=-1",
 							"host": [
 								"{{BASE_URL}}"
 							],
@@ -629,58 +377,22 @@
 							"query": [
 								{
 									"key": "time_limit",
-									"value": "-10"
+									"value": "-1"
 								}
 							]
 						}
 					},
-					"status": "Bad Request",
-					"code": 400,
+					"status": "Not Found",
+					"code": 404,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin, Accept-Encoding"
-						},
-						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": "true"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "-1"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Content-Length",
-							"value": "69"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"45-aqPZxp5UVGHGQkfueLQRyU67C08\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 14 May 2023 05:19:52 GMT"
+							"value": "60"
 						},
 						{
 							"key": "Connection",
@@ -688,7 +400,7 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"value": "timeout=2000"
 						}
 					],
 					"cookie": [],
@@ -702,7 +414,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{BASE_URL}}/resume-output?output=0",
+					"raw": "{{BASE_URL}}/resume-output?device=0",
 					"host": [
 						"{{BASE_URL}}"
 					],
@@ -711,7 +423,7 @@
 					],
 					"query": [
 						{
-							"key": "output",
+							"key": "device",
 							"value": "0"
 						}
 					]
@@ -724,7 +436,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/resume-output?output=0",
+							"raw": "{{BASE_URL}}/resume-output?device=0",
 							"host": [
 								"{{BASE_URL}}"
 							],
@@ -733,7 +445,7 @@
 							],
 							"query": [
 								{
-									"key": "output",
+									"key": "device",
 									"value": "0"
 								}
 							]
@@ -741,51 +453,15 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "json",
+					"_postman_previewlanguage": "plain",
 					"header": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin, Accept-Encoding"
-						},
-						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": "true"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "-1"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
+							"value": ""
 						},
 						{
 							"key": "Content-Length",
-							"value": "2"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 14 May 2023 05:20:59 GMT"
+							"value": "0"
 						},
 						{
 							"key": "Connection",
@@ -793,19 +469,19 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"value": "timeout=2000"
 						}
 					],
 					"cookie": [],
-					"body": "{}"
+					"body": null
 				},
 				{
-					"name": "Invalid output number",
+					"name": "Device not stopped",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/resume-output?output=10",
+							"raw": "{{BASE_URL}}/resume-output?device=0",
 							"host": [
 								"{{BASE_URL}}"
 							],
@@ -814,140 +490,23 @@
 							],
 							"query": [
 								{
-									"key": "output",
-									"value": "10"
-								}
-							]
-						}
-					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin, Accept-Encoding"
-						},
-						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": "true"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "-1"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "72"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"48-Izfoux3p+564FaMIAaVrIiqMvok\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 14 May 2023 05:21:11 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"error_code\": \"ERR_04\",\n    \"error_message\": \"Invalid output number\"\n}"
-				},
-				{
-					"name": "Output not stopped",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/resume-output?output=0",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"resume-output"
-							],
-							"query": [
-								{
-									"key": "output",
+									"key": "device",
 									"value": "0"
 								}
 							]
 						}
 					},
-					"status": "Bad Request",
-					"code": 400,
+					"status": "Not Found",
+					"code": 404,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin, Accept-Encoding"
-						},
-						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": "true"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "-1"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Content-Length",
-							"value": "72"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"48-Izfoux3p+564FaMIAaVrIiqMvok\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 14 May 2023 05:21:11 GMT"
+							"value": "89"
 						},
 						{
 							"key": "Connection",
@@ -955,11 +514,56 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"value": "timeout=2000"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"error_code\": \"ERR_03\",\n    \"error_message\": \"The selected output is not in forced stop state\"\n}"
+					"body": "{\n    \"error_code\": \"ERR_03\",\n    \"error_message\": \"The selected device is not in forced stop state\"\n}"
+				},
+				{
+					"name": "Invalid device number",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/resume-output?device=-1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"resume-output"
+							],
+							"query": [
+								{
+									"key": "device",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=2000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_code\": \"ERR_02\",\n    \"error_message\": \"Invalid device number\"\n}"
 				}
 			]
 		},
