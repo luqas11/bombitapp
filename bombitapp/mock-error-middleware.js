@@ -1,11 +1,14 @@
 module.exports = (req, res, next) => {
   switch (req.path) {
     case '/clear-history':
-      const input = Number(req.query.input);
-      if (isNaN(input) || (input !== 0 && input !== 1)) {
+      const historyDevice = Number(req.query.device);
+      if (
+        isNaN(historyDevice) ||
+        (historyDevice !== 0 && historyDevice !== 1)
+      ) {
         res.status(400).jsonp({
           error_code: 'ERR_02',
-          error_message: 'Invalid input number',
+          error_message: 'Invalid device number',
         });
         return;
       }
@@ -20,12 +23,12 @@ module.exports = (req, res, next) => {
         return;
       }
       break;
-    case '/resume-output':
-      const output = Number(req.query.output);
-      if (isNaN(output) || (output !== 0 && output !== 1)) {
+    case '/resume':
+      const resumeDevice = Number(req.query.device);
+      if (isNaN(resumeDevice) || (resumeDevice !== 0 && resumeDevice !== 1)) {
         res.status(400).jsonp({
-          error_code: 'ERR_04',
-          error_message: 'Invalid output number',
+          error_code: 'ERR_02',
+          error_message: 'Invalid device number',
         });
         return;
       }
