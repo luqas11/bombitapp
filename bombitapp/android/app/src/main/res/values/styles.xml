@@ -4,6 +4,10 @@
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+        <!-- Custom color for the splash screen. -->
+        <item name="android:windowBackground">#0A0A26</item>
+        <!-- Custom color for the status bar. -->
+        <item name="android:statusBarColor">#0A0A26</item>
     </style>
 
 </resources>
