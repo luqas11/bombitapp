@@ -8,6 +8,9 @@
     },
     {
       "path": "firmware"
+    },
+    {
+      "path": "pcb"
     }
   ],
   "settings": {
