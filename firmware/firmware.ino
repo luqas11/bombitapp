@@ -62,7 +62,7 @@ void setup()
     for (int pin : OUTPUTS_PINS)
     {
         pinMode(pin, OUTPUT);
-        digitalWrite(pin, HIGH);
+        digitalWrite(pin, LOW);
     }
 
     // Initialize the serial communication, the EEPROM library, the WiFi connection and the devices state variables
@@ -110,7 +110,6 @@ void loop()
             if (devicesData[i].currentTime > timeLimit * 60)
             {
                 devicesData[i].status = STOPPED;
-                devicesData[i].currentTime = 0;
                 digitalWrite(OUTPUTS_PINS[i], HIGH);
             }
         }
@@ -134,7 +133,6 @@ void loop()
         {
             devicesData[i].status = RUNNING;
             devicesData[i].currentRunTimestamp = millis();
-            digitalWrite(OUTPUTS_PINS[i], LOW);
         }
 
         // If the input is off, but the device is still on, turn off the device and process the run values
@@ -145,7 +143,6 @@ void loop()
             devicesData[i].runCount++;
             addValueToHistory(devicesData[i].currentTime, i);
             devicesData[i].currentTime = 0;
-            digitalWrite(OUTPUTS_PINS[i], HIGH);
 
             writeToEEPROM(MEAN_ADDR + i, devicesData[i].meanTime);
             writeToEEPROM(COUNT_ADDR + i, devicesData[i].runCount);
@@ -264,6 +261,8 @@ void handleResume()
     }
     else
     {
+        digitalWrite(OUTPUTS_PINS[i], LOW);
+        devicesData[i].currentTime = 0;
         devicesData[i].status = OFF;
         server.send(200);
     }
