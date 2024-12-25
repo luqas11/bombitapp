@@ -1,7 +1,6 @@
 #ifndef JSONUtils_h
 #define JSONUtils_h
 
-#include "Arduino.h"
 #include "DataTypes.h"
 
 // Creates a JSON string with an error code and an error message values.
