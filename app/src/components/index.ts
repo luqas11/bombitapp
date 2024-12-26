@@ -7,3 +7,4 @@ export {default as VersionHistoryCard} from './VersionHistoryCard';
 export {default as HistoryModal} from './HistoryModal';
 export {default as ConfirmationModal} from './ConfirmationModal';
 export {default as InformationModal} from './InformationModal';
+export {default as IPConfigCard} from './IPConfigCard';

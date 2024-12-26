@@ -4,13 +4,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   ConfigCard,
+  IPConfigCard,
   RequestStatusIndicator,
   TimeLimitCard,
 } from '../../components';
 import {useModalContext} from '../../context';
 import {useStore} from '../../state';
-import {changeTimeLimit, clearHistory, resume} from '../../helpers';
-import {DEVICE_NAME_PREFIX} from '../../constants';
+import {changeTimeLimit, clearHistory, resume, setBaseURL} from '../../helpers';
+import {DEVICE_IP_STORAGE_KEY, DEVICE_NAME_PREFIX} from '../../constants';
 import {styles} from './styles';
 
 /**
@@ -22,10 +23,12 @@ const SettingsScreen = () => {
   const currentStatus = useStore(state => state.status);
   const requestStatus = useStore(state => state.requestStatus);
   const devicesNames = useStore(state => state.names);
+  const deviceIP = useStore(state => state.ip);
+  const setDeviceIP = useStore(state => state.setDeviceIP);
   const setDeviceName = useStore(state => state.setDeviceName);
 
   /**
-   * Shows a modal sequence to set and confirm a device renaming. Shows wheter the API call was successful or not.
+   * Shows a modal sequence to set and confirm a device renaming. Shows whether the storage process was successful or not.
    * @param deviceId id of the device to rename
    */
   const renameDevice = (deviceId: number) => {
@@ -143,6 +146,38 @@ const SettingsScreen = () => {
     });
   };
 
+  /**
+   * Shows a modal sequence to set and confirm the device IP address. Shows whether the storage process was successful or not.
+   */
+  const setDeviceIPAddress = () => {
+    modal.showConfirmationModal({
+      title: 'Cambiar dirección IP',
+      text: 'Ingresá la dirección IP a la que se va a conectar la app.',
+      textInputConfig: {
+        placeholder: 'IP del dispositivo',
+        validation: value => Boolean(value),
+        initialValue: deviceIP,
+      },
+      acceptCallback: async value => {
+        await AsyncStorage.setItem(DEVICE_IP_STORAGE_KEY, value);
+        setBaseURL(value);
+        setDeviceIP(value);
+      },
+      successCallback: () => {
+        modal.showInformationModal({
+          text: 'La IP del dispositivo se modificó con éxito.',
+          type: 'SUCCESS',
+        });
+      },
+      errorCallback: () => {
+        modal.showInformationModal({
+          text: 'La app no pudo modificar la IP del dispositivo.',
+          type: 'ERROR',
+        });
+      },
+    });
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <ConfigCard
@@ -163,6 +198,7 @@ const SettingsScreen = () => {
         setDeviceTimeLimit={setDeviceTimeLimit}
         timeLimit={currentStatus?.time_limit}
       />
+      <IPConfigCard setDeviceIPAddress={setDeviceIPAddress} ip={deviceIP} />
       <View style={styles.indicatorContainer}>
         <RequestStatusIndicator requestState={requestStatus} />
       </View>

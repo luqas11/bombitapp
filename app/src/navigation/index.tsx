@@ -12,7 +12,12 @@ import {
 } from './constants';
 import {useStore} from '../state';
 import {RequestStatuses} from '../components/RequestStatusIndicator';
-import {DEVICES_DEFAULT_NAMES, DEVICE_NAME_PREFIX} from '../constants';
+import {
+  DEVICES_DEFAULT_NAMES,
+  DEVICE_IP_STORAGE_KEY,
+  DEVICE_NAME_PREFIX,
+} from '../constants';
+import {setBaseURL} from '../helpers';
 import {styles} from './styles';
 
 const Tab = createBottomTabNavigator();
@@ -25,6 +30,7 @@ const CustomNavigator = () => {
   const fetchStatus = useStore(state => state.fetchStatus);
   const setRequestStatus = useStore(state => state.setRequestStatus);
   const setDevicesNames = useStore(state => state.setDevicesNames);
+  const setDeviceIP = useStore(state => state.setDeviceIP);
 
   useEffect(() => {
     /**
@@ -46,8 +52,22 @@ const CustomNavigator = () => {
       setDevicesNames([name0, name1]);
     };
 
+    /**
+     * Gets the device IP address from AsyncStorage and sets it to the store
+     */
+    const getDeviceIP = async () => {
+      try {
+        const ip = await AsyncStorage.getItem(DEVICE_IP_STORAGE_KEY);
+        if (ip) {
+          setBaseURL(ip);
+          setDeviceIP(ip);
+        }
+      } catch (e) {}
+    };
+
     getDevicesNames();
-  }, [setDevicesNames]);
+    getDeviceIP();
+  }, [setDevicesNames, setDeviceIP]);
 
   useEffect(() => {
     let isMounted = true;

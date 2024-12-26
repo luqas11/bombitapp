@@ -26,6 +26,7 @@ type ConfirmationModalProps = {
     placeholder: string;
     keyboardType?: KeyboardTypeOptions;
     validation?: (value: string) => boolean;
+    initialValue?: string;
   };
 };
 
@@ -39,9 +40,10 @@ type ConfirmationModalProps = {
  *   @param props.successCallback function to be called when the acceptCallback is successfully executed
  *   @param props.errorCallback function to be called when the acceptCallback throws an error
  *   @param props.textInputConfig text input parameters
- *     @param props.textInputConfig.placeholder any additional props for the TextInput component
- *     @param props.textInputConfig.keyboardType any additional props for the TextInput component
+ *     @param props.textInputConfig.placeholder placeholder text to show when there is no text written
+ *     @param props.textInputConfig.keyboardType keyboard type to be displayed while writing
  *     @param props.textInputConfig.validation function that takes the current input value as argument and return a boolean indicating if it's valid or not
+ *     @param props.textInputConfig.initialValue initial input text content
  * @returns a modal component
  */
 const ConfirmationModal = ({
@@ -53,7 +55,9 @@ const ConfirmationModal = ({
   errorCallback,
   textInputConfig,
 }: ConfirmationModalProps) => {
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState(
+    textInputConfig?.initialValue ?? '',
+  );
   const [isLoading, setLoading] = useState(false);
   return (
     <Modal

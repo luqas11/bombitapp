@@ -39,6 +39,7 @@ type ConfirmationModalData = {
     placeholder: string;
     keyboardType?: KeyboardTypeOptions;
     validation?: (value: string) => boolean;
+    initialValue?: string;
   };
 };
 

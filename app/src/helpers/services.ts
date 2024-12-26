@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Config from 'react-native-config';
 
 import {REQUEST_TIMEOUT} from '../constants';
 
@@ -24,7 +23,6 @@ type Response = {
 export type ErrorResponse = {error_code: string; error_message: string};
 
 const axiosInstance = axios.create({
-  baseURL: Config.BASE_URL,
   timeout: REQUEST_TIMEOUT,
 });
 
@@ -46,6 +44,14 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(err);
   },
 );
+
+/**
+ * Sets the base URL to be used in the Axios instance
+ * @param ip address where the device is listening, including port (e.g. 192.168.0.11:3004)
+ */
+export const setBaseURL = async (ip: string) => {
+  axiosInstance.defaults.baseURL = 'http://' + ip;
+};
 
 /**
  * Gets the device status

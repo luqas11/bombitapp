@@ -4,16 +4,19 @@ import {RequestStatuses} from '../components/RequestStatusIndicator';
 
 interface DeviceState {
   names: string[] | undefined;
+  ip: string | undefined;
   status: SystemData | undefined;
   requestStatus: RequestStatuses;
   fetchStatus: () => Promise<void>;
   setRequestStatus: (value: RequestStatuses) => void;
   setDevicesNames: (value: string[]) => void;
   setDeviceName: (value: string, id: number) => void;
+  setDeviceIP: (value: string) => void;
 }
 
 export const useStore = create<DeviceState>((set, get) => ({
   names: undefined,
+  ip: undefined,
   status: undefined,
   requestStatus: RequestStatuses.NO_DATA,
   setRequestStatus: value => set({requestStatus: value}),
@@ -33,4 +36,5 @@ export const useStore = create<DeviceState>((set, get) => ({
       throw new Error('Error getting devices names.');
     }
   },
+  setDeviceIP: value => set({ip: value}),
 }));
