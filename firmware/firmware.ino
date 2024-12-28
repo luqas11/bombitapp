@@ -8,6 +8,10 @@
 /*
    Version 5.0.0
    20-9-2023
+
+   External libraries:
+   ArduinoJson@6.21.5
+   esp8266@2.7.4
 */
 
 // LED pin to indicate the network connection status
