@@ -11,7 +11,7 @@
 
    External libraries:
    ArduinoJson@6.21.5
-   esp8266@2.7.4
+   esp8266@3.1.2
 */
 
 // LED pin to indicate the network connection status
