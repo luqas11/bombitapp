@@ -10,7 +10,7 @@
    20-9-2023
 
    External libraries:
-   ArduinoJson@6.21.5
+   ArduinoJson@7.3.1
    esp8266@3.1.2
 */
 
@@ -69,7 +69,7 @@ void setup() {
   // Initialize the serial communication, the EEPROM library, the WiFi connection and the devices state variables
   Serial.begin(115200);
   beginEEPROM();
-  connectToWifi(SSID, PASSWORD, IP, GATEWAY, SUBNET, STATUS_LED);
+  connectToWifi(SSID, PASSWORD, STATUS_LED);
   getSavedStateValues();
 
   // Set up all the server endpoints

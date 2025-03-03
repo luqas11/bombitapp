@@ -5,18 +5,10 @@ bool isWiFiConnected() {
   return WiFi.status() == WL_CONNECTED;
 }
 
-void connectToWifi(String ssid, String password, String ip, String gateway, String subnet, int ledPin) {
-  IPAddress _ip;
-  _ip.fromString(ip);
-  IPAddress _gateway;
-  _gateway.fromString(gateway);
-  IPAddress _subnet;
-  _subnet.fromString(subnet);
-
+void connectToWifi(String ssid, String password, int ledPin) {
   Serial.print("Connecting to ");
   Serial.println(String(ssid));
   WiFi.mode(WIFI_STA);
-  WiFi.config(_ip, _gateway, _subnet);
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
