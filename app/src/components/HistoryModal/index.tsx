@@ -50,8 +50,9 @@ const HistoryModal = ({historyEntries, hideModal}: HistoryModalProps) => {
             <View style={styles.divider} />
           </View>
           <ButtonWithIcon
-            iconConfig={{name: 'close', size: 28}}
+            text={'Cerrar'}
             onPress={hideModal}
+            customStyles={{text: styles.buttonText}}
           />
         </View>
       </View>

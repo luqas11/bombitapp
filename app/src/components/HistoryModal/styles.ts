@@ -27,4 +27,5 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   divider: {height: 1, backgroundColor: Colors.text},
+  buttonText: {color: Colors.text, fontSize: 16},
 });
