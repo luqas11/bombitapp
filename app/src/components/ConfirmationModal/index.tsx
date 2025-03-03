@@ -85,6 +85,14 @@ const ConfirmationModal = ({
           ) : (
             <View style={styles.buttonsContainer}>
               <ButtonWithIcon
+                text={'Cancelar'}
+                onPress={() => {
+                  textInputConfig && setInputText('');
+                  hideModal();
+                }}
+                customStyles={{text: styles.buttonText}}
+              />
+              <ButtonWithIcon
                 text={'Aceptar'}
                 onPress={async () => {
                   try {
@@ -106,14 +114,6 @@ const ConfirmationModal = ({
                   textInputConfig?.validation &&
                   !textInputConfig.validation(inputText)
                 }
-                customStyles={{text: styles.buttonText}}
-              />
-              <ButtonWithIcon
-                text={'Cancelar'}
-                onPress={() => {
-                  textInputConfig && setInputText('');
-                  hideModal();
-                }}
                 customStyles={{text: styles.buttonText}}
               />
             </View>
