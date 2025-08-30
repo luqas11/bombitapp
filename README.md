@@ -35,3 +35,14 @@ The project has the following components and features:
 ##### Mobile App
 - A React Native mobile app compiled for Android.
 - Gives a nice and human-friendly presentation layer for the firmware interaction, showing engine status and actions that can be made through HTTP.
+
+### Screenshots
+##### Mobile App
+<img src="screenshots/example3.png" width="30%"> <img src="screenshots/example4.png" width="30%"> <img src="screenshots/example5.png" width="30%">  
+
+##### PCB 3D model
+<img src="screenshots/example1.png" width="70%"> 
+
+##### Circuit schematic
+<img src="screenshots/example2.png"> 
+
