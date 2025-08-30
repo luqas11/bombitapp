@@ -1,20 +1,17 @@
-# BombitApp
+# bombitapp
 
-### *The problem*
-I have been struggling with the water pump setup at my home for some years. Ideally, when the tank located at the roof is empty, the pump should start pulling water from a natural undergound water source and pushing it to the tank until it's full. Most of the time this setup works well, but there are some ocassional failures that can't be predicted or prevented easily. Sometimes, the water level sensor stops working for different reasons, making the pump to keep working even when the tank is full, resulting in a water overflow. Another common issue is that the water can't go through the pipe, usually caused by a blockage, exposing the pump to a burn up risk by running dry. Both issues share the same consequence, the pump working endlessly, so makes sense to think a shared solution that attacks both problems.
+### What is this
+This project is a device that controls and protects electric water pump systems. 
 
-### *The solution*
-There are many ways to solve this, but an interesting option that allows me to practice and learn some new things, is to use a microcontroller to automatically power off the pump when the working time exceeds some specified threshold. Even better, that microcontroller could be able to connect to a mobile app, to be remotely controlled and supervised from a phone. 
-
-The pump setup details are the following:
-
-##### Pump setup
-- 2 220VAC 1/2 HP pumps, connected to a 5m long pipe which ends at an natural undergroud water reservoir.
-- 2 rooftop water tanks.
+It's designed to operate over this preexisting pump setup:
+- 2 220VAC 1/2 HP pumps.
+- 2 water tanks.
 - 2 water level sensors, placed inside the tanks and made by an on/off switch that turns on when the tank gets emptied and turns off when the filling process is complete. That switch operates directly at 220VAC and it's signal is plugged in to the pumps.
-- 2 separated home pipe circuits, each one connected to a different tank and pump.
+- 2 separated pipe circuits, each one connected to a different tank and pump. 
 
-And, after a long desing and test process, this project has the following components and features:
+For different mechanical reasons, the sensors sometimes fail and keep the pumps engines ruuning indefinitely, until manually fixed. If this happens, both the engines and the tanks could result physically damaged if the problem isn't solved quickly. This device's idea is to cut pump power if the sensor is sending the signal over a time period that exceeds some predefined threshold, to protect the setup. From a mobile app, the user can resume the power after fixing the problem, or read the tank filling time history to get an idea of the expected values. 
+
+The project has the following components and features:
 
 ##### Hardware
 - An ESP-12E board, able to connect to the home Wi-Fi network.
