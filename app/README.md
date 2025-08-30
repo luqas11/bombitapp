@@ -20,8 +20,3 @@ To compile an APK, use:
 
 To start the mock server, use:
 `npm run mock`
-
-### Examples:
-Some examples of the app screens.
-
-<img src="ui_design/status.png" width="30%"> <img src="ui_design/config.png" width="30%"> <img src="ui_design/info.png" width="30%">  
