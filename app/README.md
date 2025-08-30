@@ -18,5 +18,5 @@ To launch the app in a device or an emulator, use:
 To compile an APK, use:  
 `npm run assemble`
 
-To start the mock server, use:
+To start the mock server, use:  
 `npm run mock`
