@@ -1,7 +1,7 @@
 # Firmware
 
 ### How this works
-This ESP8266 sketch connects the board to the WiFi network, and exposes some endpoints to get system status and set system configuration. The [Postman](https://www.postman.com/) collection in the root directoty of this repository has complete examples and use cases of this API.
+This ESP8266 sketch connects the board to the WiFi network, and exposes some endpoints to get system status and set system configuration. The [Postman](https://www.postman.com/) collection in the root directory of this repository has complete examples and use cases of this API.
 
 ### API
 
