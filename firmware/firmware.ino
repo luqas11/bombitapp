@@ -7,10 +7,10 @@
 
 /*
    Version 5.0.0
-   20-9-2023
+   29-8-2025
 
    External libraries:
-   ArduinoJson@7.3.1
+   ArduinoJson@7.4.2
    esp8266@3.1.2
 */
 
