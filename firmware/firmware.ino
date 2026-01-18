@@ -1,13 +1,15 @@
 #include <ESP8266WebServer.h>
+#include <ESP8266WiFi.h>
 #include "JSONUtils.h"
 #include "WiFiUtils.h"
 #include "EEPROMUtils.h"
 #include "DataTypes.h"
 #include "config.h"
+#include "AdminPage.h"
 
 /*
-   Version 5.0.0
-   29-8-2025
+   Version 5.1.0
+   18-1-2026
 
    External libraries:
    ArduinoJson@7.4.2
@@ -17,7 +19,7 @@
 // LED pin to indicate the network connection status
 const int STATUS_LED = 13;
 // Duration of the status LED blinks
-const int LED_BLINK_TIME = 200;
+const int LED_BLINK_TIME = 100;
 // Number of devices connected to the system
 const int DEVICES_NUMBER = 2;
 // Default running time limit in minutes
@@ -39,6 +41,8 @@ const String NOT_FOUND = "ERR_00";
 const String INVALID_TIME_LIMIT = "ERR_01";
 const String INVALID_DEVICE = "ERR_02";
 const String DEVICE_NOT_STOPPED = "ERR_03";
+const String INVALID_WIFI_SSID = "ERR_04";
+const String INVALID_WIFI_PASSWORD = "ERR_05";
 
 // Memory addresses
 const int LIMIT_ADDR = 0;
@@ -69,14 +73,18 @@ void setup() {
   // Initialize the serial communication, the EEPROM library, the WiFi connection and the devices state variables
   Serial.begin(115200);
   beginEEPROM();
-  connectToWifi(SSID, PASSWORD, STATUS_LED);
+  beginWiFi(SSID_AP, PASSWORD_AP, STATUS_LED);
   getSavedStateValues();
 
   // Set up all the server endpoints
+  server.on("/admin", handleAdmin);
   server.on("/status", handleStatus);
   server.on("/clear-history", handleClear);
   server.on("/change-time-limit", handleChangeLimit);
   server.on("/resume", handleResume);
+  server.on("/get-wifi-config", handleGetWiFiConfig);
+  server.on("/set-wifi-config", handleSetWiFiConfig);
+  server.on("/get-wifi-status", handleGetWiFiStatus);
   server.onNotFound(handleNotFound);
 
   // Initialize the HTTP server
@@ -241,6 +249,53 @@ void handleResume() {
 void handleNotFound() {
   String response = formatError(NOT_FOUND, "URL not found");
   server.send(404, "application/json", response);
+  blinkStatusLed();
+}
+
+// Sets the WiFi configuration
+void handleSetWiFiConfig() {
+  String ssid = server.arg("ssid");
+  String password = server.arg("password");
+
+  if (ssid == "" || ssid.length() > 32) {
+    String response = formatError(INVALID_WIFI_SSID, "Invalid WiFi SSID");
+    server.send(400, "application/json", response);
+    blinkStatusLed();
+    return;
+  }
+
+  if (password == "" || password.length() < 8 || password.length() > 64) {
+    String response = formatError(INVALID_WIFI_PASSWORD, "Invalid WiFi password");
+    server.send(400, "application/json", response);
+    blinkStatusLed();
+    return;
+  }
+
+  server.send(200);
+  blinkStatusLed();
+
+  connectToWiFi(ssid, password, STATUS_LED);
+}
+
+// Gets the WiFi configuration
+void handleGetWiFiConfig() {
+  String response = formatWiFiConfig(WiFi.SSID());
+
+  server.send(200, "application/json", response);
+  blinkStatusLed();
+}
+
+// Gets the current WiFi status
+void handleGetWiFiStatus() {
+  String response = formatWiFiStatus(WiFi.localIP().isSet() ? WiFi.localIP().toString() : "", WiFi.status());
+
+  server.send(200, "application/json", response);
+  blinkStatusLed();
+}
+
+// Returns an HTML page to the client, to manage and see the WiFi configuration
+void handleAdmin() {
+  server.send(200, "text/html", ADMIN_HTML);
   blinkStatusLed();
 }
 

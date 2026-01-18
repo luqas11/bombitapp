@@ -13,6 +13,27 @@ String formatError(String errorCode, String errorMessage) {
   return response;
 }
 
+String formatWiFiConfig(String ssid) {
+  String response;
+  StaticJsonDocument<128> doc;
+
+  doc["ssid"] = ssid;
+
+  serializeJson(doc, response);
+  return response;
+}
+
+String formatWiFiStatus(String ip, int status) {
+  String response;
+  StaticJsonDocument<128> doc;
+
+  doc["status"] = status;
+  doc["ip"] = ip;
+
+  serializeJson(doc, response);
+  return response;
+}
+
 String formatStatus(uint16_t timeLimit, DeviceData devicesData[], int devicesNumber) {
   StaticJsonDocument<768> doc;
   doc["time_limit"] = timeLimit;

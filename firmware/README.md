@@ -74,3 +74,29 @@ Resumes a device that is in forced stop mode. For example, the query params coul
 ```
 /resume?device=0
 ```
+
+`[GET] /get-wifi-config`  
+
+Returns the current WiFi configuration. For example:
+```
+{
+    "ssid": "myssid"
+}
+```
+
+`[GET] /set-wifi-config?ssid={ssid}&password={password}`  
+
+Sets the WiFi configuration with the specified SSID and password. For example, the query params could be:
+```
+/set-wifi-config?ssid=myssid&password=mypassword
+```
+
+`[GET] /get-wifi-status`  
+
+Returns the current WiFi connection status and IP address. For example:
+```
+{
+    "status": 3,
+    "ip": "192.168.1.100"
+}
+```

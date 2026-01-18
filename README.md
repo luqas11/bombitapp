@@ -24,6 +24,7 @@ The project has the following components and features:
 
 ##### Firmware
 - A sketch written in C++ and loaded to the ESP.
+- Serves a webpage that allows the user to initially configure the WiFi credentials.
 - Allows the level sensor signal to reach the output and power the pump until a time threshold is exceeded. After that, the connection is stopped to prevent the engine to keep working. If the signal stops before the threshold (i. e. the filling was successful), nothing happens.
 - The time threshold can be setted via an HTTP request.
 - Allows to resume the pump power via an HTTP request, overriding the stop state.
