@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 #include "WiFiUtils.h"
 
-const int MAX_AWAIT_TIME = 15;
+const int MAX_AWAIT_TIME = 10;
 
 bool isWiFiConnected() {
   return WiFi.status() == WL_CONNECTED;
